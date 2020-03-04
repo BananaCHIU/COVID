@@ -12,4 +12,7 @@
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="home_second">Home Second</string>
+    <string name="confirmed">Confirmed</string>
+    <string name="death">Death</string>
+    <string name="discharged">Discharged</string>
 </resources>
