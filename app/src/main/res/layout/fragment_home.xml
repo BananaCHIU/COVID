@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/design_default_color_surface"
     tools:context=".ui.home.HomeFragment">
 
     <TextView
         android:id="@+id/title_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Coronavirus in HK"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline4"
@@ -23,7 +24,7 @@
         android:id="@+id/title_lu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:text="Latest Update "
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
@@ -37,7 +38,7 @@
         android:id="@+id/title_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="@string/confirmed"
         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline4"
         android:textColor="@android:color/black"
@@ -48,7 +49,7 @@
 
     <TextView
         android:id="@+id/text_confirm"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/open_sans"
@@ -65,20 +66,21 @@
         android:id="@+id/title_death"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:text="@string/death"
         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_confirm" />
+        app:layout_constraintTop_toBottomOf="@+id/text_dconfirm" />
 
     <TextView
         android:id="@+id/text_death"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="xxx"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/title_death"
@@ -89,24 +91,104 @@
         android:id="@+id/title_discharged"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:text="@string/discharged"
         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_confirm" />
+        app:layout_constraintTop_toBottomOf="@+id/text_dconfirm" />
 
     <TextView
         android:id="@+id/text_discharged"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="xxx"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+        android:textColor="@android:color/holo_green_light"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/title_discharged"
         app:layout_constraintStart_toStartOf="@+id/title_discharged"
         app:layout_constraintTop_toBottomOf="@+id/title_discharged" />
+
+    <TextView
+        android:id="@+id/text_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/home_source"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Caption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_dconfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintEnd_toEndOf="@+id/text_confirm"
+        app:layout_constraintStart_toEndOf="@+id/text_upconfirm"
+        app:layout_constraintTop_toBottomOf="@+id/text_confirm" />
+
+    <TextView
+        android:id="@+id/text_upconfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/up"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintStart_toStartOf="@+id/text_confirm"
+        app:layout_constraintTop_toBottomOf="@+id/text_confirm" />
+
+    <TextView
+        android:id="@+id/text_ddischarged"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+        android:textColor="@android:color/holo_green_dark"
+        app:layout_constraintEnd_toEndOf="@+id/text_discharged"
+        app:layout_constraintStart_toEndOf="@+id/text_updischarged"
+        app:layout_constraintTop_toBottomOf="@+id/text_discharged" />
+
+    <TextView
+        android:id="@+id/text_updischarged"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/up"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+        android:textColor="@android:color/holo_green_dark"
+        app:layout_constraintStart_toStartOf="@+id/text_discharged"
+        app:layout_constraintTop_toBottomOf="@+id/text_discharged" />
+
+    <TextView
+        android:id="@+id/text_ddeath"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="@+id/text_death"
+        app:layout_constraintStart_toEndOf="@+id/text_updeath"
+        app:layout_constraintTop_toBottomOf="@+id/text_death" />
+
+    <TextView
+        android:id="@+id/text_updeath"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/up"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@+id/text_death"
+        app:layout_constraintTop_toBottomOf="@+id/text_death" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
