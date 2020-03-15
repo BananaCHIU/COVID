@@ -117,12 +117,11 @@
         android:id="@+id/text_source"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginBottom="32dp"
         android:text="@string/home_source"
         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Caption"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -190,5 +189,16 @@
         android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="@+id/text_death"
         app:layout_constraintTop_toBottomOf="@+id/text_death" />
+
+    <TextView
+        android:id="@+id/text_updateDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/updateDate"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Caption"
+        app:layout_constraintBottom_toTopOf="@+id/text_source"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
