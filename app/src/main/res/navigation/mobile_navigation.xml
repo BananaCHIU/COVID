@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home"/>
 
     <fragment
+        android:id="@+id/nav_supplies"
+        android:name="com.example.covid.ui.supplies.SuppliesFragment"
+        android:label="@string/menu_supplies"
+        tools:layout="@layout/fragment_supplies"/>
+
+    <fragment
         android:id="@+id/nav_gallery"
         android:name="com.example.covid.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
