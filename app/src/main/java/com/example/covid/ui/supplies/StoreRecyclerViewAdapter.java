@@ -1,5 +1,6 @@
 package com.example.covid.ui.supplies;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,13 @@ public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
         public final CardView storeCardView;
         public final ImageView storeImage;
         public final TextView storeName;
-        public final TextView suppliesType;
+        public final TextView maskType;
+        public final TextView handType;
+        public final TextView bleachType;
+        public final TextView alcoholType;
+        public final TextView respiratorType;
+        public final TextView clothingType;
+
 
         public StoreViewHolder(View view)
         {
@@ -29,7 +36,12 @@ public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
             storeCardView = (CardView)itemView.findViewById(R.id.store_CardView);
             storeImage = (ImageView)itemView.findViewById(R.id.store_Image);
             storeName = (TextView) itemView.findViewById(R.id.store_Name);
-            suppliesType = (TextView) itemView.findViewById(R.id.store_SuppliesType);
+            maskType = (TextView) itemView.findViewById(R.id.store_TypeMask);
+            handType = (TextView) itemView.findViewById(R.id.store_TypeHS);
+            bleachType = (TextView) itemView.findViewById(R.id.store_TypeBleach);
+            alcoholType = (TextView) itemView.findViewById(R.id.store_TypeRA);
+            respiratorType = (TextView) itemView.findViewById(R.id.store_TypeRespirator);
+            clothingType = (TextView) itemView.findViewById(R.id.store_TypeIC);
         }
     }
 
@@ -58,12 +70,30 @@ public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
         //storeViewHolder.storeImage.setImageBitmap(stores.get(i).getImage());
         storeViewHolder.storeName.setText(stores.get(i).getStoreName());
 
-        String suppliesText = "";
-        for(String type : stores.get(i).getSupplies())
+        for(Store.suppliesType supplies : stores.get(i).getSupplies())
         {
-            suppliesText += type + "\n";
+            switch(supplies)
+            {
+                case SURGICAL_MASK:
+                    storeViewHolder.maskType.setTextColor(Color.GREEN);
+                    break;
+                case HAND_SANITIZER:
+                    storeViewHolder.handType.setTextColor(Color.GREEN);
+                    break;
+                case BLEACH:
+                    storeViewHolder.bleachType.setTextColor(Color.GREEN);
+                    break;
+                case RUBBING_ALCOHOL:
+                    storeViewHolder.alcoholType.setTextColor(Color.GREEN);
+                    break;
+                case RESPIRATOR:
+                    storeViewHolder.respiratorType.setTextColor(Color.GREEN);
+                    break;
+                case ISOLATION_CLOTHING:
+                    storeViewHolder.clothingType.setTextColor(Color.GREEN);
+                    break;
+            }
         }
-        storeViewHolder.suppliesType.setText(suppliesText);
     }
 
     @Override
