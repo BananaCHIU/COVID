@@ -44,4 +44,6 @@
     <string name="to_hhhh">To (hhmm)</string>
     <string name="add">Add</string>
     <string name="add_a_photo_for_the_store_optional">Add a photo for the store (Optional)</string>
+    <string name="verification_email_sent">Verification Email Sent</string>
+    <string name="email1">Please check your mailbox for the verification email. After you have verified your email, you can access our application. Thank You</string>
 </resources>

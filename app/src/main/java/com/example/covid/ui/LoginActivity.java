@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -162,8 +163,24 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "createUserWithEmail:success");
-                            //FirebaseUser user = mAuth.getCurrentUser();
-                            finish();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (!user.isEmailVerified())
+                                user.sendEmailVerification()
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Log.d(TAG, "Email sent.");
+                                                    Snackbar.make(v, "Email verification need. Please check your email.", Snackbar.LENGTH_LONG)
+                                                            .setAction("Action", null).show();
+                                                    Intent intent = new Intent(LoginActivity.this, WaitEmailActivity.class);
+                                                    startActivity(intent);
+                                                    finish();
+
+                                                }
+                                            }
+                                        });{
+                            }
                         } else {
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Snackbar.make(v, "Registration failed.", Snackbar.LENGTH_LONG)
