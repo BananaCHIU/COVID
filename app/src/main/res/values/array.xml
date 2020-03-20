@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="district">
+        <item>-- Please Select --</item>
+        <item>Central and Western</item>
+        <item>Eastern</item>
+        <item>Islands</item>
+        <item>Kowloon City</item>
+        <item>Kwai Tsing</item>
+        <item>Kwun Tong</item>
+        <item>North</item>
+        <item>Sai Kung</item>
+        <item>Sha Tin</item>
+        <item>Sham Shui Po</item>
+        <item>Southern</item>
+        <item>Tai Po</item>
+        <item>Tsuen Wan</item>
+        <item>Tuen Mun</item>
+        <item>Wan Chai</item>
+        <item>Wong Tai Sin</item>
+        <item>Yau Tsim Mong</item>
+        <item>Yuen Long</item>
+    </string-array>
+</resources>

@@ -1,5 +1,6 @@
 package com.example.covid.ui.supplies;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 
 import com.example.covid.R;
 import com.example.covid.data.Store;
+import com.example.covid.ui.AddStoreActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -23,6 +26,9 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class SuppliesFragment extends Fragment {
+
+    private FloatingActionButton btn_addStore;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -67,6 +73,16 @@ public class SuppliesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_supplies, container, false);
+
+        btn_addStore = view.findViewById(R.id.btn_addStore);
+        btn_addStore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddStoreActivity.class);
+                startActivity(intent);
+            }
+        });
+
         List<Store> stores = Store.sample_data();
 
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.store_RecyclerView);

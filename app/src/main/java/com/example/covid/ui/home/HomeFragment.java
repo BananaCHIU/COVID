@@ -21,6 +21,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 import com.example.covid.R;
 
@@ -198,7 +199,7 @@ public class HomeFragment extends Fragment{
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
-                getActivity().runOnUiThread(new Runnable(){
+                Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable(){
                     public void run(){
                         textConfirm.setText(confirm);
                         textDeath.setText(death);
