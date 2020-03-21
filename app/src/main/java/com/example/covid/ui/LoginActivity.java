@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.covid.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -164,7 +165,8 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            if (!user.isEmailVerified())
+                            user.reload();
+                            if (!user.isEmailVerified()) {
                                 user.sendEmailVerification()
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
@@ -179,7 +181,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                                 }
                                             }
-                                        });{
+                                        });
                             }
                         } else {
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -190,6 +192,7 @@ public class LoginActivity extends AppCompatActivity {
                         progress_login.setVisibility(View.INVISIBLE);
                     }
                 });
+
     }
 
     @Override
