@@ -33,10 +33,7 @@ public class WaitEmailActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//Declare the timer
         t = new Timer();
-//Set the schedule function and rate
-
             t.scheduleAtFixedRate(new TimerTask() {
 
                                       @Override
