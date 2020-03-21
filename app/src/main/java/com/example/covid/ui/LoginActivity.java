@@ -12,6 +12,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import android.content.Context;
 import android.content.Intent;
@@ -39,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressBar progress_login;
     InputMethodManager imm;
     private View v;
+
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            user = mAuth.getCurrentUser();
                             user.reload();
                             if (!user.isEmailVerified()) {
                                 user.sendEmailVerification()
@@ -175,6 +178,22 @@ public class LoginActivity extends AppCompatActivity {
                                                     Log.d(TAG, "Email sent.");
                                                     Snackbar.make(v, "Email verification need. Please check your email.", Snackbar.LENGTH_LONG)
                                                             .setAction("Action", null).show();
+
+                                                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                                            .setDisplayName(text_username.getEditText().getText().toString())
+                                                            .build();
+
+                                                    user.updateProfile(profileUpdates)
+                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                    if (task.isSuccessful()) {
+                                                                        Log.d(TAG, "User profile updated.");
+                                                                    }
+                                                                }
+                                                            });
+
+
                                                     Intent intent = new Intent(LoginActivity.this, WaitEmailActivity.class);
                                                     startActivity(intent);
                                                     finish();
