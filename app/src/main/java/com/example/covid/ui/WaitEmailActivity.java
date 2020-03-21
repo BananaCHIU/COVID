@@ -21,6 +21,7 @@ public class WaitEmailActivity extends AppCompatActivity {
 
     private static final String TAG = "WaitEmailActivity";
     private FirebaseAuth mAuth;
+    Timer t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class WaitEmailActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 //Declare the timer
-        Timer t = new Timer();
+        t = new Timer();
 //Set the schedule function and rate
 
             t.scheduleAtFixedRate(new TimerTask() {
@@ -47,38 +48,18 @@ public class WaitEmailActivity extends AppCompatActivity {
                                               WaitEmailActivity.this.finish();
                                           }
                                       }
-
                                   },
-//Set how long before to start calling the TimerTask (in milliseconds)
+                    //Set how long before to start calling the TimerTask (in milliseconds)
                     0,
-//Set the amount of time between each execution (in milliseconds)
+                    //Set the amount of time between each execution (in milliseconds)
                     5000);
+    }
 
-        /*
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
-            @Override
-            public void run() {
-                while (!mAuth.getCurrentUser().isEmailVerified()) {
-                    CountDownTimer cdt5 = new CountDownTimer(5000, 1000) {
-                        @Override
-                        public void onTick(long millisUntilFinished) {
-                            Log.d(TAG, "1000 ms passed");
-                        }
+    @Override
+    public void onPause() {
 
-                        @Override
-                        public void onFinish() {
-                            Log.d(TAG, "user reloaded");
-                            mAuth.getCurrentUser().reload();
-                        }
-                    }.start();
-                }
-            }
-
-        });
-
-        WaitEmailActivity.this.finish();
-
-*/
+        super.onPause();
+        t.cancel();
     }
 
     @Override

@@ -77,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
                 //User have not verify his/her email
                 Intent emailIntent = new Intent(this, WaitEmailActivity.class);
                 startActivity(emailIntent);
+            }else{
+                text_userEmail.setText(Objects.requireNonNull(mAuth.getCurrentUser().getEmail()));
+                text_userName.setText(Objects.requireNonNull(mAuth.getCurrentUser()).getDisplayName());
             }
 
         } else {
@@ -90,8 +93,7 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
-        text_userEmail.setText(Objects.requireNonNull(mAuth.getCurrentUser().getEmail()));
-        text_userName.setText(Objects.requireNonNull(mAuth.getCurrentUser()).getDisplayName());
+
     }
 
     @Override

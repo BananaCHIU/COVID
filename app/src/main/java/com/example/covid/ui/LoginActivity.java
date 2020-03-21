@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                 text_username.setError("Required.");
                 valid = false;
             } else{
-                text_password.setError(null);
+                text_username.setError(null);
             }
         }
         return valid;
