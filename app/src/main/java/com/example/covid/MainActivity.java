@@ -2,11 +2,10 @@ package com.example.covid;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -17,19 +16,20 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.covid.ui.LoginActivity;
 import com.example.covid.ui.WaitEmailActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
+
+    private String TAG = "MainActivity";
 
     private AppBarConfiguration mAppBarConfiguration;
     private FirebaseAuth mAuth;
-    private String TAG = "MainActivity";
+
+    private TextView text_userName, text_userEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
          */
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        text_userName = headerView.findViewById(R.id.text_userName);
+        text_userEmail = headerView.findViewById(R.id.text_userEmail);
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_supplies, R.id.nav_gallery, R.id.nav_slideshow)
@@ -81,6 +84,14 @@ public class MainActivity extends AppCompatActivity {
             Intent loginIntent = new Intent(this, LoginActivity.class);
             startActivity(loginIntent);
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        text_userEmail.setText(Objects.requireNonNull(mAuth.getCurrentUser().getEmail()));
+        text_userName.setText(Objects.requireNonNull(mAuth.getCurrentUser()).getDisplayName());
     }
 
     @Override
