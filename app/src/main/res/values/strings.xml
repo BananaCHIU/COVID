@@ -50,4 +50,7 @@
     <string name="supplies_availbility">Supplies Availbility</string>
     <string name="surgical_mask">Surgical Mask</string>
     <string name="note_add_store">Note: Once the new store is approved by our team, it will be displayed on the app</string>
+    <string name="text_login_hk1">康 復 香 港</string>
+    <string name="text_login_hk2">時 代 抗 疫</string>
+    <string name="save_lifes_save_hong_kong">SAVE LIVES  SAVE HONG KONG</string>
 </resources>

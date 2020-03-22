@@ -16,7 +16,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:hint="@string/username"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:errorEnabled="true"
         app:hintTextColor="@color/primaryDarkColor"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView9">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -116,5 +116,58 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/primaryTextColor"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/text_login_hk2"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline2"
+        android:textColor="@color/design_default_color_on_primary"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/primaryTextColor"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/text_login_hk1"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline2"
+        android:textColor="@color/design_default_color_on_primary"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/primaryTextColor"
+        android:fontFamily="serif-monospace"
+        android:text="@string/save_lifes_save_hong_kong"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+        android:textColor="@color/design_default_color_on_primary"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
