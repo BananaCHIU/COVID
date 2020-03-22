@@ -24,8 +24,8 @@
         tools:layout="@layout/fragment_news" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.covid.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_map"
+        android:name="com.example.covid.ui.map.MapFragment"
+        android:label="@string/menu_map"
+        tools:layout="@layout/fragment_map" />
 </navigation>

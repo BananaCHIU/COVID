@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         text_userEmail = headerView.findViewById(R.id.text_userEmail);
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_supplies, R.id.nav_news, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_supplies, R.id.nav_news, R.id.nav_map)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
