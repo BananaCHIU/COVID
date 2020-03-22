@@ -5,17 +5,17 @@ import android.graphics.Bitmap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class Store
 {
-    public enum suppliesType {SURGICAL_MASK, HAND_SANITIZER, BLEACH, RUBBING_ALCOHOL, RESPIRATOR, ISOLATION_CLOTHING}
     private Bitmap image;
     private String name;
-    private List<suppliesType> supplies;
+    private List<Supply> supplies;
 
     public Store() { }
 
-    public Store(Bitmap image, String name, List<suppliesType> supplies)
+    public Store(Bitmap image, String name, List<Supply> supplies)
     {
         this.image = image;
         this.name = name;
@@ -26,57 +26,30 @@ public class Store
 
     public String getStoreName() { return name; }
 
-    public List<suppliesType> getSupplies() { return supplies; }
+    public List<Supply> getSupplies() { return supplies; }
 
     public void setImage(Bitmap image) { this.image = image; }
 
     public void setStoreName(String name) { this.name = name; }
 
-    public void setSupplies(List<suppliesType> supplies) { this.supplies = supplies; }
+    public void setSupplies(List<Supply> supplies) { this.supplies = supplies; }
 
     public static List<Store> sample_data()
     {
         ArrayList<Store> sample = new ArrayList<Store>(6);
 
-        Store one = new Store(null, "Store 1", new ArrayList<suppliesType>());
-        one.supplies.addAll(Arrays.asList(suppliesType.SURGICAL_MASK));
+        Store one = new Store(null, "Store 1", new ArrayList<Supply>());
+        one.supplies.addAll(Arrays.asList(new Supply(Supply.suppliesType.SURGICAL_MASK, new ArrayList<Map<String, Double>>())));
         sample.add(one);
 
-        Store two = new Store(null, "Store 2", new ArrayList<suppliesType>());
-        two.supplies.addAll(Arrays.asList(suppliesType.SURGICAL_MASK, suppliesType.HAND_SANITIZER));
+        Store two = new Store(null, "Store 2", new ArrayList<Supply>());
+        two.supplies.addAll(Arrays.asList(new Supply(Supply.suppliesType.SURGICAL_MASK, new ArrayList<Map<String, Double>>()), new Supply(Supply.suppliesType.HAND_SANITIZER, new ArrayList<Map<String, Double>>())));
         sample.add(two);
 
-        Store three = new Store(null, "Store 3", new ArrayList<suppliesType>());
-        three.supplies.addAll(Arrays.asList(suppliesType.SURGICAL_MASK, suppliesType.HAND_SANITIZER, suppliesType.BLEACH));
+        Store three = new Store(null, "Store 3", new ArrayList<Supply>());
+        three.supplies.addAll(Arrays.asList(new Supply(Supply.suppliesType.SURGICAL_MASK, new ArrayList<Map<String, Double>>()), new Supply(Supply.suppliesType.HAND_SANITIZER, new ArrayList<Map<String, Double>>()), new Supply(Supply.suppliesType.BLEACH, new ArrayList<Map<String, Double>>())));
         sample.add(three);
-
-        Store four = new Store(null, "Store 4", new ArrayList<suppliesType>());
-        four.supplies.addAll(Arrays.asList(suppliesType.SURGICAL_MASK, suppliesType.HAND_SANITIZER, suppliesType.BLEACH, suppliesType.RUBBING_ALCOHOL));
-        sample.add(four);
-
-        Store five = new Store(null, "Store 5", new ArrayList<suppliesType>());
-        five.supplies.addAll(Arrays.asList(suppliesType.SURGICAL_MASK, suppliesType.HAND_SANITIZER, suppliesType.BLEACH, suppliesType.RUBBING_ALCOHOL, suppliesType.RESPIRATOR));
-        sample.add(five);
-
-        Store six = new Store(null, "Store 6", new ArrayList<suppliesType>());
-        six.supplies.addAll(Arrays.asList(suppliesType.SURGICAL_MASK, suppliesType.HAND_SANITIZER, suppliesType.BLEACH, suppliesType.RUBBING_ALCOHOL, suppliesType.RESPIRATOR, suppliesType.ISOLATION_CLOTHING));
-        sample.add(six);
 
         return sample;
     }
 }
-
-/*
-for(int i = 0; i < 6; i++)
-        {
-            ArrayList<suppliesType> sup = new ArrayList<suppliesType>();
-            for(int k = 0; k <= i; k++)
-            {
-                sup.add(Integer.toString(k));
-            }
-
-            Store s = new Store(null, "Store " + i + " Name", sup);
-
-            sample.add(s);
-        }
- */

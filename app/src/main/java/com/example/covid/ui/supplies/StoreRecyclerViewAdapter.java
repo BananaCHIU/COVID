@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.covid.R;
 import com.example.covid.data.Store;
+import com.example.covid.data.Supply;
 
 import java.util.List;
 
@@ -70,9 +71,9 @@ public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
         //storeViewHolder.storeImage.setImageBitmap(stores.get(i).getImage());
         storeViewHolder.storeName.setText(stores.get(i).getStoreName());
 
-        for(Store.suppliesType supplies : stores.get(i).getSupplies())
+        for(Supply supply : stores.get(i).getSupplies())
         {
-            switch(supplies)
+            switch(supply.getType())
             {
                 case SURGICAL_MASK:
                     storeViewHolder.maskType.setTextColor(Color.GREEN);
