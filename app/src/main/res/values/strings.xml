@@ -47,4 +47,7 @@
     <string name="verification_email_sent">Verification Email Sent</string>
     <string name="email1">Please check your mailbox for the verification email. After you have verified your email, you can access our application. Thank You</string>
     <string name="google_my_map_created_by_appledaily">&#160;&#160;Google My Maps Created by Appledaily&#160;&#160;</string>
+    <string name="supplies_availbility">Supplies Availbility</string>
+    <string name="surgical_mask">Surgical Mask</string>
+    <string name="note_add_store">Note: Once the new store is approved by our team, it will be displayed on the app</string>
 </resources>

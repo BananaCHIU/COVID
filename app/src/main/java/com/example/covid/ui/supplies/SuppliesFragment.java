@@ -83,16 +83,20 @@ public class SuppliesFragment extends Fragment {
             }
         });
 
-        List<Store> stores = Store.sample_data();
-
+        //List<Store> stores = Store.sample_data();
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.store_RecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new StoreRecyclerViewAdapter(stores));
-        if(stores.size() == 0)
+        //recyclerView.setAdapter(new StoreRecyclerViewAdapter(stores));
+        //if(stores.size() == 0)
+        if (false)
         {
             Toast.makeText(getActivity(), "No store recorded", Toast.LENGTH_LONG).show();
         }
 
         return view;
+    }
+
+    protected void downloadStoreData(){
+
     }
 }

@@ -70,7 +70,7 @@ public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
         final StoreViewHolder storeViewHolder = (StoreViewHolder)viewHolder;
         //storeViewHolder.storeImage.setImageBitmap(stores.get(i).getImage());
         storeViewHolder.storeName.setText(stores.get(i).getStoreName());
-
+        /*
         for(Supply supply : stores.get(i).getSupplies())
         {
             switch(supply.getType())
@@ -95,6 +95,8 @@ public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
                     break;
             }
         }
+
+         */
     }
 
     @Override

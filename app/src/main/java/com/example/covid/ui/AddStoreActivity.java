@@ -24,6 +24,8 @@ import androidx.core.graphics.BitmapCompat;
 
 import com.example.covid.R;
 import com.example.covid.data.Store;
+import com.example.covid.data.Supply;
+import com.example.covid.data.Supply.suppliesType;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -40,12 +42,15 @@ import java.lang.reflect.Array;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AddStoreActivity extends AppCompatActivity {
 
+    //public enum suppliesType {SURGICAL_MASK, HAND_SANITIZER, BLEACH, RUBBING_ALCOHOL, RESPIRATOR, ISOLATION_CLOTHING}
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final String TAG = "AddStoreActivity";
 
@@ -167,6 +172,17 @@ public class AddStoreActivity extends AppCompatActivity {
         data.put("image", null);
         data.put("approved", false);
 
+        Map<String, List> supplyType = new HashMap<>();
+        List<Supply> supplies = new ArrayList<>();
+        Supply supply = new Supply(suppliesType.SURGICAL_MASK, "", 0);
+
+        supplies.add(supply);
+        supplyType.put(suppliesType.SURGICAL_MASK.toString(), supplies);
+
+        List masks = supplyType.get(suppliesType.SURGICAL_MASK.toString());
+
+        data.put("supplies",supplyType);
+
         db.collection("stores")
                 .add(data)
                 .addOnSuccessListener(documentReference ->
@@ -199,6 +215,9 @@ public class AddStoreActivity extends AppCompatActivity {
                                     })
                                     .addOnFailureListener(e -> Log.w(TAG, "Error updating document", e)));
                         });
+                    }else {
+                        progress_add.setVisibility(View.INVISIBLE);
+                        finish();
                     }
                 })
                 .addOnFailureListener(e -> Log.w(TAG, "Error adding document", e));

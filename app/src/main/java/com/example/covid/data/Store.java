@@ -9,18 +9,22 @@ import java.util.Map;
 
 public class Store
 {
+    private String storeID;
     private Bitmap image;
     private String name;
     private List<Supply> supplies;
 
     public Store() { }
 
-    public Store(Bitmap image, String name, List<Supply> supplies)
+    public Store(String id, Bitmap image, String name, List<Supply> supplies)
     {
+        this.storeID = id;
         this.image = image;
         this.name = name;
         this.supplies = supplies;
     }
+
+    public String getStoreID() { return storeID; }
 
     public Bitmap getImage() { return image; }
 
@@ -34,6 +38,7 @@ public class Store
 
     public void setSupplies(List<Supply> supplies) { this.supplies = supplies; }
 
+    /*
     public static List<Store> sample_data()
     {
         ArrayList<Store> sample = new ArrayList<Store>(6);
@@ -52,4 +57,5 @@ public class Store
 
         return sample;
     }
+     */
 }
