@@ -25,7 +25,7 @@ public class NewsFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private NewsRecyclerViewAdapter mAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    //private ProgressBar progressBar;
+    private ProgressBar progressBar;
     private NewsViewModel viewModel;
     private RelativeLayout relativeLayout;
 
@@ -41,7 +41,7 @@ public class NewsFragment extends Fragment {
 
         viewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
 
-        //progressBar = root.findViewById(R.id.progressBar);
+        progressBar = root.findViewById(R.id.progress_news);
 
         mRecyclerView = root.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(NewsFragment.this.getContext()));
@@ -60,7 +60,7 @@ public class NewsFragment extends Fragment {
                     mAdapter = new NewsRecyclerViewAdapter(channel.getArticles(), NewsFragment.this.getContext());
                     mRecyclerView.setAdapter(mAdapter);
                     mAdapter.notifyDataSetChanged();
-                    //progressBar.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.GONE);
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
             }
