@@ -5,12 +5,12 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_sign_out">Sign Out</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_supplies">Supplies</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_news">News</string>
+    <string name="menu_map">Map (Chinese Only)</string>
 
     <string name="home_second">Home Second</string>
     <string name="confirmed">Confirmed</string>
@@ -46,4 +46,5 @@
     <string name="add_a_photo_for_the_store_optional">Add a photo for the store (Optional)</string>
     <string name="verification_email_sent">Verification Email Sent</string>
     <string name="email1">Please check your mailbox for the verification email. After you have verified your email, you can access our application. Thank You</string>
+    <string name="google_my_map_created_by_appledaily">&#160;&#160;Google My Maps Created by Appledaily&#160;&#160;</string>
 </resources>
