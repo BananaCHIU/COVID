@@ -53,4 +53,14 @@
     <string name="text_login_hk1">康 復 香 港</string>
     <string name="text_login_hk2">時 代 抗 疫</string>
     <string name="save_lifes_save_hong_kong">SAVE LIVES  SAVE HONG KONG</string>
+    <string name="hand_sanitizer">Hand Sanitizer</string>
+    <string name="bleach">Bleach</string>
+    <string name="rubbing_alcohol">Rubbing Alcohol</string>
+    <string name="respirator">Respirator</string>
+    <string name="isolation_clothing">Isolation Clothing</string>
+    <string name="product_name_optional">Product Name*</string>
+    <string name="price_optional">Price*</string>
+    <string name="product_name">Product Name</string>
+    <string name="price">Price</string>
+    <string name="optional">* Optional</string>
 </resources>
