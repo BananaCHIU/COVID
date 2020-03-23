@@ -45,7 +45,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class AddStoreActivity extends AppCompatActivity {
@@ -172,14 +172,14 @@ public class AddStoreActivity extends AppCompatActivity {
         data.put("image", null);
         data.put("approved", false);
 
-        Map<String, List> supplyType = new HashMap<>();
-        List<Supply> supplies = new ArrayList<>();
+        Map<String, ArrayList> supplyType = new HashMap<>();
+        ArrayList<Supply> supplies = new ArrayList<>();
         Supply supply = new Supply(suppliesType.SURGICAL_MASK, "", 0);
 
         supplies.add(supply);
         supplyType.put(suppliesType.SURGICAL_MASK.toString(), supplies);
 
-        List masks = supplyType.get(suppliesType.SURGICAL_MASK.toString());
+        ArrayList masks = supplyType.get(suppliesType.SURGICAL_MASK.toString());
 
         data.put("supplies",supplyType);
 

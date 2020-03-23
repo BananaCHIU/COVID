@@ -17,7 +17,7 @@ import com.example.covid.data.Store;
 import com.example.covid.ui.AddStoreActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.List;
+import java.util.ArrayList;
 
 
 /**
@@ -83,11 +83,9 @@ public class SuppliesFragment extends Fragment {
             }
         });
 
-        //List<Store> stores = Store.sample_data();
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.store_RecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        //recyclerView.setAdapter(new StoreRecyclerViewAdapter(stores));
-        //if(stores.size() == 0)
+        recyclerView.setAdapter(new StoreRecyclerViewAdapter(Store.sample_data()));
         if (false)
         {
             Toast.makeText(getActivity(), "No store recorded", Toast.LENGTH_LONG).show();

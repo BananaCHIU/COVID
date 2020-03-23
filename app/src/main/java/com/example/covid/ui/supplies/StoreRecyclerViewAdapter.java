@@ -1,6 +1,8 @@
 package com.example.covid.ui.supplies;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +16,10 @@ import com.example.covid.R;
 import com.example.covid.data.Store;
 import com.example.covid.data.Supply;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 {
@@ -46,9 +51,9 @@ public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
         }
     }
 
-    private List<Store> stores;
+    private ArrayList<Store> stores;
 
-    public StoreRecyclerViewAdapter(List<Store> stores)
+    public StoreRecyclerViewAdapter(ArrayList<Store> stores)
     {
         this.stores = stores;
     }
@@ -70,33 +75,49 @@ public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
         final StoreViewHolder storeViewHolder = (StoreViewHolder)viewHolder;
         //storeViewHolder.storeImage.setImageBitmap(stores.get(i).getImage());
         storeViewHolder.storeName.setText(stores.get(i).getStoreName());
-        /*
-        for(Supply supply : stores.get(i).getSupplies())
+
+        ArrayList<String> sType = new ArrayList<>();
+        sType.addAll(stores.get(i).getSupplies().keySet());
+
+        for(String type : sType)
         {
-            switch(supply.getType())
+            switch(type)
             {
-                case SURGICAL_MASK:
+                case "SURGICAL_MASK":
                     storeViewHolder.maskType.setTextColor(Color.GREEN);
                     break;
-                case HAND_SANITIZER:
+                case "HAND_SANITIZER":
                     storeViewHolder.handType.setTextColor(Color.GREEN);
                     break;
-                case BLEACH:
+                case "BLEACH":
                     storeViewHolder.bleachType.setTextColor(Color.GREEN);
                     break;
-                case RUBBING_ALCOHOL:
+                case "RUBBING_ALCOHOL":
                     storeViewHolder.alcoholType.setTextColor(Color.GREEN);
                     break;
-                case RESPIRATOR:
+                case "RESPIRATOR":
                     storeViewHolder.respiratorType.setTextColor(Color.GREEN);
                     break;
-                case ISOLATION_CLOTHING:
+                case "ISOLATION_CLOTHING":
                     storeViewHolder.clothingType.setTextColor(Color.GREEN);
                     break;
             }
         }
 
-         */
+
+        storeViewHolder.itemView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(v.getContext(), StoreDetailActivity.class);
+                Store temp = stores.get(i);
+                HashMap<String, ArrayList> supply = (HashMap<String, ArrayList>) temp.getSupplies();
+                intent.putExtra("store", temp);
+                intent.putExtra("supply", supply);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
