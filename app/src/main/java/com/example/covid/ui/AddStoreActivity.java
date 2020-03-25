@@ -3,6 +3,7 @@ package com.example.covid.ui;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -47,6 +49,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Map;
+
+import static android.graphics.Color.*;
 
 public class AddStoreActivity extends AppCompatActivity {
 
@@ -124,9 +128,20 @@ public class AddStoreActivity extends AppCompatActivity {
         } else {
             input_storeName.setError(null);
         }
+        String district = spinner_district.getSelectedItem().toString();
+        if (district.equals("-- Please Select --")) {
+            TextView errorText = (TextView)spinner_district.getSelectedView();
+            errorText.setError("Error");
+            errorText.setTextColor(parseColor("#FFDD2C00"));
+            errorText.setText("Required.");
+            valid = false;
+        } else {
+            input_address.setError(null);
+        }
+
 
         String address = input_address.getEditText().getText().toString();
-        if (TextUtils.isEmpty(storeName)) {
+        if (TextUtils.isEmpty(address)) {
             input_address.setError("Required.");
             valid = false;
         } else {

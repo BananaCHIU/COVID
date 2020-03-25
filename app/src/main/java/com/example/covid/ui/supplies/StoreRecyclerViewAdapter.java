@@ -125,4 +125,9 @@ public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
     {
         super.onAttachedToRecyclerView(recyclerView);
     }
+
+    private ArrayList<Store> downloadStores(){
+
+        return null;
+    }
 }
