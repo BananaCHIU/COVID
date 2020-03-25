@@ -14,7 +14,7 @@ import java.util.Map;
 public class Store implements Parcelable
 {
     private String storeID;
-    private Bitmap image;
+    private String image;
     private String name;
     private Map<String, ArrayList> supplies;
     private String district, address, timeOpen, timeClose;
@@ -23,7 +23,7 @@ public class Store implements Parcelable
 
     public Store() { }
 
-    public Store(String id, Bitmap image, String name, Map<String, ArrayList> supplies, String district, String address, String timeOpen, String timeClose, boolean approved)
+    public Store(String id, String image, String name, Map<String, ArrayList> supplies, String district, String address, String timeOpen, String timeClose, boolean approved)
     {
         this.storeID = id;
         this.image = image;
@@ -38,7 +38,7 @@ public class Store implements Parcelable
 
     protected Store(Parcel in) {
         storeID = in.readString();
-        image = in.readParcelable(Bitmap.class.getClassLoader());
+        image = in.readString();
         name = in.readString();
         district = in.readString();
         address = in.readString();
@@ -61,7 +61,7 @@ public class Store implements Parcelable
 
     public String getStoreID() { return storeID; }
 
-    public Bitmap getImage() { return image; }
+    public String getImage() { return image; }
 
     public String getStoreName() { return name; }
 
@@ -79,7 +79,7 @@ public class Store implements Parcelable
 
     public void setStoreID(String id) { this.storeID = id; }
 
-    public void setImage(Bitmap image) { this.image = image; }
+    public void setImage(String image) { this.image = image; }
 
     public void setStoreName(String name) { this.name = name; }
 
@@ -115,7 +115,7 @@ public class Store implements Parcelable
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(storeID);
-        parcel.writeParcelable(image, i);
+        parcel.writeString(image);
         parcel.writeString(name);
         parcel.writeString(district);
         parcel.writeString(address);

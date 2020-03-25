@@ -182,9 +182,9 @@ public class AddStoreActivity extends AppCompatActivity {
         data.put("name", input_storeName.getEditText().getText().toString());
         data.put("district", spinner_district.getSelectedItem().toString());
         data.put("address", input_address.getEditText().getText().toString());
-        data.put("timeFrom", input_timeFrom.getEditText().getText().toString());
-        data.put("timeTo", input_timeTo.getEditText().getText().toString());
-        data.put("image", null);
+        data.put("timeOpen", input_timeFrom.getEditText().getText().toString());
+        data.put("timeClose", input_timeTo.getEditText().getText().toString());
+        data.put("imageURL", null);
         data.put("approved", false);
 
         Map<String, ArrayList> supplyType = new HashMap<>();
@@ -205,6 +205,19 @@ public class AddStoreActivity extends AppCompatActivity {
                 .addOnSuccessListener(documentReference ->
                 {
                     Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                    documentReference.update("id", documentReference.getId())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "DocumentSnapshot successfully updated!");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error updating document", e);
+                            }
+                        });
 
                     //Upload Image and get download url
                     if (storeMap != null) {
@@ -224,7 +237,7 @@ public class AddStoreActivity extends AppCompatActivity {
                             // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
                             // ...
                             Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
-                            result.addOnSuccessListener(uri -> documentReference.update("image", uri.toString())
+                            result.addOnSuccessListener(uri -> documentReference.update("imageURL", uri.toString())
                                     .addOnSuccessListener(aVoid -> {
                                         Log.d(TAG, "DocumentSnapshot successfully updated!");
                                         progress_add.setVisibility(View.INVISIBLE);

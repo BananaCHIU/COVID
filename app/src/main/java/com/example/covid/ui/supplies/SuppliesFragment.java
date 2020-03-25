@@ -1,12 +1,19 @@
 package com.example.covid.ui.supplies;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +22,19 @@ import android.widget.Toast;
 import com.example.covid.R;
 import com.example.covid.data.Store;
 import com.example.covid.ui.AddStoreActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
+import java.util.Map;
+
+import static com.google.firebase.crashlytics.internal.Logger.TAG;
 
 
 /**
@@ -37,6 +54,9 @@ public class SuppliesFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    RecyclerView recyclerView;
+    private SwipeRefreshLayout mySwipeRefreshLayout;
+    private View view;
 
     public SuppliesFragment() {
         // Required empty public constructor
@@ -72,7 +92,7 @@ public class SuppliesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_supplies, container, false);
+        view = inflater.inflate(R.layout.fragment_supplies, container, false);
 
         btn_addStore = view.findViewById(R.id.btn_addStore);
         btn_addStore.setOnClickListener(new View.OnClickListener() {
@@ -82,19 +102,63 @@ public class SuppliesFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
+        mySwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        Log.i(TAG, "onRefresh called from SwipeRefreshLayout");
 
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.store_RecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new StoreRecyclerViewAdapter(Store.sample_data()));
-        if (false)
-        {
-            Toast.makeText(getActivity(), "No store recorded", Toast.LENGTH_LONG).show();
-        }
+                        // This method performs the actual data-refresh operation.
+                        // The method calls setRefreshing(false) when it's finished.
+                        downloadStoreData();
 
+                    }
+                }
+        );
         return view;
     }
 
-    protected void downloadStoreData(){
+    private void downloadStoreData(){
+        ArrayList<Store> stores = new ArrayList<>();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("stores")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId());
+                                Store store = new Store();
+                                store.setImage(document.getString("imageURL"));
+                                store.setAddress(document.getString("address"));
+                                store.setDistrict(document.getString("district"));
+                                store.setStoreID(document.getString("id"));
+                                store.setStoreName(document.getString("name"));
+                                store.setSupplies((Map<String, ArrayList>) document.get("supplies"));
+                                store.setTimeOpen(document.getString("timeOpen"));
+                                store.setTimeClose(document.getString("timeClose"));
+                                stores.add(store);
+                            }
+                            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.store_RecyclerView);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+                            recyclerView.setAdapter(new StoreRecyclerViewAdapter(stores));
+                            if (stores.size() == 0){
+                                Toast.makeText(getActivity(), "No store",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                            mySwipeRefreshLayout.setRefreshing(false);
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        downloadStoreData();
     }
 }

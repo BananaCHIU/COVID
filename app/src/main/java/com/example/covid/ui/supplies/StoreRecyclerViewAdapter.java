@@ -3,18 +3,25 @@ package com.example.covid.ui.supplies;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.covid.R;
 import com.example.covid.data.Store;
 import com.example.covid.data.Supply;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +30,8 @@ import java.util.Map;
 
 public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 {
+    private static final String TAG = "StoreRecyclerViewAdapter";
+
     public static class StoreViewHolder extends RecyclerView.ViewHolder
     {
         public final CardView storeCardView;
@@ -124,10 +133,5 @@ public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
     public void onAttachedToRecyclerView(RecyclerView recyclerView)
     {
         super.onAttachedToRecyclerView(recyclerView);
-    }
-
-    private ArrayList<Store> downloadStores(){
-
-        return null;
     }
 }
