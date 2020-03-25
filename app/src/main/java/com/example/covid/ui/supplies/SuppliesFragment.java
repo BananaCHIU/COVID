@@ -113,11 +113,14 @@ public class SuppliesFragment extends Fragment {
 
                         // This method performs the actual data-refresh operation.
                         // The method calls setRefreshing(false) when it's finished.
+                        mySwipeRefreshLayout.setRefreshing(true);
                         downloadStoreData();
 
                     }
                 }
         );
+        mySwipeRefreshLayout.setRefreshing(true);
+        downloadStoreData();
         return view;
     }
 
@@ -155,11 +158,5 @@ public class SuppliesFragment extends Fragment {
                         }
                     }
                 });
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        downloadStoreData();
     }
 }
