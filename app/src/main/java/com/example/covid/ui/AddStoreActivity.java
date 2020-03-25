@@ -188,13 +188,15 @@ public class AddStoreActivity extends AppCompatActivity {
         data.put("approved", false);
 
         Map<String, ArrayList> supplyType = new HashMap<>();
-        ArrayList<Supply> supplies = new ArrayList<>();
-        Supply supply = new Supply(suppliesType.SURGICAL_MASK, "", 0);
+        ArrayList<Supply> masks = new ArrayList<>(), hand_sanitizers = new ArrayList<>(), bleach = new ArrayList<>()
+                , rub_alcohols = new ArrayList<>(), respirators = new ArrayList<>(), cloths = new ArrayList<>();
 
-        supplies.add(supply);
-        supplyType.put(suppliesType.SURGICAL_MASK.toString(), supplies);
-
-        ArrayList masks = supplyType.get(suppliesType.SURGICAL_MASK.toString());
+        supplyType.put(suppliesType.SURGICAL_MASK.toString(), masks);
+        supplyType.put(suppliesType.HAND_SANITIZER.toString(), hand_sanitizers);
+        supplyType.put(suppliesType.BLEACH.toString(), bleach);
+        supplyType.put(suppliesType.RUBBING_ALCOHOL.toString(), rub_alcohols);
+        supplyType.put(suppliesType.RESPIRATOR.toString(), respirators);
+        supplyType.put(suppliesType.ISOLATION_CLOTHING.toString(), cloths);
 
         data.put("supplies",supplyType);
 
