@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -59,7 +60,7 @@ public class StoreDetailActivity extends AppCompatActivity {
                 .transform(new CropSquareTransformation())
                 .transform(new RoundedCornersTransformation(100,0)).into(image);
 
-        getSupportActionBar().setTitle(store.getStoreName());
+        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"black\">" + store.getStoreName() + "</font>"));
         businessHour.setText(store.getTimeOpen() + " - " + store.getTimeClose());
         address.setText(store.getAddress());
 
