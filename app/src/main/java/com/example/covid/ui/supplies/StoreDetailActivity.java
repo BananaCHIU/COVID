@@ -1,6 +1,7 @@
 package com.example.covid.ui.supplies;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +25,8 @@ public class StoreDetailActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_detail);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         store = (Store) this.getIntent().getParcelableExtra("store");
         supply = (HashMap<String, ArrayList>) this.getIntent().getSerializableExtra("supply");
@@ -35,6 +38,7 @@ public class StoreDetailActivity extends AppCompatActivity {
 
         //image.setImageBitmap(store.getImage());
         name.setText(store.getStoreName());
+        getSupportActionBar().setTitle(store.getStoreName());
         businessHour.setText(store.getTimeOpen() + " - " + store.getTimeClose());
         address.setText(store.getAddress());
 
@@ -44,4 +48,11 @@ public class StoreDetailActivity extends AppCompatActivity {
         storeDetail.setAdapter(new StoreDetailRecyclerViewAdapter(supply));
 
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
 }

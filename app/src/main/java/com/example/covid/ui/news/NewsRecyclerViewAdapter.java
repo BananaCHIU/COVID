@@ -97,10 +97,8 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
         //Glide.with(viewHolder.itemView.getContext()).load(currentArticle.getImage()).into(viewHolder.newsImage);
         String url = currentArticle.getImage();
         if (url != null) {
-            StringBuffer sb = new StringBuffer(url);
-            sb.insert(4,'s');
             Picasso.get()
-                    .load(sb.toString())
+                    .load(url)
                     .placeholder(R.drawable.placeholder)
                     .into(viewHolder.newsImage);
         }
