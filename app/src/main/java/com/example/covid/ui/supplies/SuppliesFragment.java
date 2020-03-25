@@ -103,6 +103,8 @@ public class SuppliesFragment extends Fragment {
             }
         });
         mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
+        mySwipeRefreshLayout.setColorSchemeResources(R.color.primaryColor, R.color.primaryDarkColor);
+        mySwipeRefreshLayout.canChildScrollUp();
         mySwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
