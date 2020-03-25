@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="40dp"
                 android:text="Business Hour"
                 android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
                 android:textSize="18sp"
