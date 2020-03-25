@@ -9,6 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/store_CardView"
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_width="0dp"
         android:layout_height="160dp"
         app:cardBackgroundColor="#D3CCCCCC"
