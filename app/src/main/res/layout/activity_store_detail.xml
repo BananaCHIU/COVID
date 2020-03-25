@@ -7,6 +7,7 @@
     tools:context=".ui.supplies.StoreDetailActivity">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
@@ -25,68 +26,56 @@
 
                 <ImageView
                     android:id="@+id/storedetail_Image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_marginStart="32dp"
                     android:layout_marginTop="28dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@android:drawable/sym_def_app_icon" />
 
                 <TextView
-                    android:id="@+id/storedetail_Name"
+                    android:id="@+id/storedetail_TitleBH"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="32dp"
                     android:layout_marginTop="32dp"
-                    android:text="@string/store_name"
-                    android:textSize="24sp"
+                    android:text="Business Hour"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/storedetail_Image"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/storedetail_TitleBH"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Business Hour"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/storedetail_Image" />
-
-                <TextView
                     android:id="@+id/storedetail_BH"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
                     android:text="Store_BusinessHour"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/storedetail_Image"
                     app:layout_constraintTop_toBottomOf="@+id/storedetail_TitleBH" />
 
                 <TextView
                     android:id="@+id/storedetail_TitleAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
+                    android:layout_marginStart="32dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/address"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/storedetail_Image"
                     app:layout_constraintTop_toBottomOf="@+id/storedetail_BH" />
 
                 <TextView
                     android:id="@+id/storedetail_Address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
                     android:text="Store_Address"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/storedetail_Image"
                     app:layout_constraintTop_toBottomOf="@+id/storedetail_TitleAddress" />
 
                 <TextView
@@ -94,7 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="28dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="32dp"
                     android:text="Available Supplies"
                     android:textSize="24sp"
                     android:textStyle="bold"
@@ -110,5 +99,17 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_addSupply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        android:src="@drawable/baseline_add_white_24"
+        app:backgroundTint="@color/secondaryColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

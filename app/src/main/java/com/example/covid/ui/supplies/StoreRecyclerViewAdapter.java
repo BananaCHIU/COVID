@@ -22,11 +22,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Map;
+
+import jp.wasabeef.picasso.transformations.CropSquareTransformation;
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 {
@@ -82,7 +86,10 @@ public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
     public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int i)
     {
         final StoreViewHolder storeViewHolder = (StoreViewHolder)viewHolder;
-        //storeViewHolder.storeImage.setImageBitmap(stores.get(i).getImage());
+        Picasso.get().load(stores.get(i).getImage())
+                .placeholder(R.drawable.placeholder)
+                .transform(new CropSquareTransformation())
+                .transform(new RoundedCornersTransformation(100,0)).into(storeViewHolder.storeImage);
         storeViewHolder.storeName.setText(stores.get(i).getStoreName());
 
         ArrayList<String> sType = new ArrayList<>();

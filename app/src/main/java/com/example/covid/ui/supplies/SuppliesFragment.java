@@ -93,7 +93,7 @@ public class SuppliesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         view = inflater.inflate(R.layout.fragment_supplies, container, false);
-
+        recyclerView = (RecyclerView) view.findViewById(R.id.store_RecyclerView);
         btn_addStore = view.findViewById(R.id.btn_addStore);
         btn_addStore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,7 +143,6 @@ public class SuppliesFragment extends Fragment {
                                 store.setTimeClose(document.getString("timeClose"));
                                 stores.add(store);
                             }
-                            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.store_RecyclerView);
                             recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
                             recyclerView.setAdapter(new StoreRecyclerViewAdapter(stores));
                             if (stores.size() == 0){

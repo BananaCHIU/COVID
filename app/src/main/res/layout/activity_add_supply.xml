@@ -15,7 +15,41 @@
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayout01"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="4dp">
+
+            <ImageButton
+                android:id="@+id/btn_close_add_supplies"
+                android:layout_width="50dp"
+                android:layout_height="48dp"
+                android:layout_alignParentStart="true"
+                android:backgroundTint="@color/primaryColor"
+                android:src="@drawable/baseline_close_white_36" />
+
+            <Button
+                android:id="@+id/btn_add_supplies"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="#000"
+                android:fontFamily="@font/open_sans"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingRight="10dp"
+                android:text="@string/add"
+                android:textColor="@color/secondaryLightColor"
+                android:textSize="16sp"
+                app:iconPadding="0dp" />
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/textView12"
@@ -48,36 +82,42 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/add_mask"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/surgical_mask" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/add_hand_san"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/hand_sanitizer" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/add_bleach"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/bleach" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/add_alcohol"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/rubbing_alcohol" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/add_respirator"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/respirator" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/add_cloth"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/isolation_clothing" />

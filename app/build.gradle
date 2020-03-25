@@ -58,5 +58,7 @@ dependencies {
     //Rss
     implementation 'com.prof.rssparser:rssparser:2.1.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'jp.wasabeef:picasso-transformations:2.2.1'
+    implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
 
 }

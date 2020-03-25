@@ -1,8 +1,11 @@
 package com.example.covid.ui.news;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +29,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerViewAdapter.ViewHolder>
 {
@@ -99,6 +104,7 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
         if (url != null) {
             Picasso.get()
                     .load(url)
+                    .transform(new RoundedCornersTransformation(30,0))
                     .placeholder(R.drawable.placeholder)
                     .into(viewHolder.newsImage);
         }
@@ -106,44 +112,13 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
 
         viewHolder.newsDate.setText(pubDateString);
 
-        /*
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-
-            @SuppressLint("SetJavaScriptEnabled")
             @Override
             public void onClick(View view) {
-
-                //show article content inside a dialog
-                articleView = new WebView(mContext);
-
-                articleView.getSettings().setLoadWithOverviewMode(true);
-
-                String title = articles.get(viewHolder.getAdapterPosition()).getTitle();
-                String content = articles.get(viewHolder.getAdapterPosition()).getContent();
-
-                articleView.getSettings().setJavaScriptEnabled(true);
-                articleView.setHorizontalScrollBarEnabled(false);
-                articleView.setWebChromeClient(new WebChromeClient());
-                articleView.loadDataWithBaseURL(null, "<style>img{display: inline; height: auto; max-width: 100%;} " +
-
-                        "</style>\n" + "<style>iframe{ height: auto; width: auto;}" + "</style>\n" + content, null, "utf-8", null);
-
-                androidx.appcompat.app.AlertDialog alertDialog = new androidx.appcompat.app.AlertDialog.Builder(mContext).create();
-                alertDialog.setTitle(title);
-                alertDialog.setView(articleView);
-                alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
-
-                ((TextView) alertDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentArticle.getLink()));
+                view.getContext().startActivity(browserIntent);
             }
         });
-
-         */
     }
 
     @Override
