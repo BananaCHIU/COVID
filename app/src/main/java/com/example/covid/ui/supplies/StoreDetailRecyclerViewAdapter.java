@@ -16,6 +16,7 @@ import com.example.covid.R;
 import com.example.covid.data.Supply;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class StoreDetailRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
@@ -33,10 +34,10 @@ public class StoreDetailRecyclerViewAdapter extends RecyclerView.Adapter<Recycle
         }
     }
 
-    private Map<String, ArrayList> supplies;
+    private HashMap<String, ArrayList> supplies;
     private ArrayList<String> supplyTypes = new ArrayList<>();
 
-    public StoreDetailRecyclerViewAdapter(Map<String, ArrayList> supplies, Context context)
+    public StoreDetailRecyclerViewAdapter(HashMap<String, ArrayList> supplies, Context context)
     {
         this.supplies = supplies;
 

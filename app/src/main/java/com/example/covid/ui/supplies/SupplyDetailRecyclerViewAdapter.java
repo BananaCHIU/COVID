@@ -11,6 +11,7 @@ import com.example.covid.R;
 import com.example.covid.data.Supply;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class SupplyDetailRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
@@ -28,9 +29,9 @@ public class SupplyDetailRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
         }
     }
 
-    private ArrayList<Supply> suppliesDetail;
+    private ArrayList<HashMap> suppliesDetail;
 
-    public SupplyDetailRecyclerViewAdapter(ArrayList<Supply> suppliesDetail)
+    public SupplyDetailRecyclerViewAdapter(ArrayList<HashMap> suppliesDetail)
     {
         this.suppliesDetail = suppliesDetail;
     }
@@ -48,8 +49,8 @@ public class SupplyDetailRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
     public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int i)
     {
         final SupplyDetailViewHolder supplyDetailViewHolder = (SupplyDetailViewHolder) viewHolder;
-        supplyDetailViewHolder.brandName.setText(suppliesDetail.get(i).getName());
-        supplyDetailViewHolder.price.setText(Double.toString(suppliesDetail.get(i).getPrice()));
+        supplyDetailViewHolder.brandName.setText((String)suppliesDetail.get(i).get("name"));
+        supplyDetailViewHolder.price.setText(Double.toString((Double) suppliesDetail.get(i).get("price")));
     }
 
     @Override

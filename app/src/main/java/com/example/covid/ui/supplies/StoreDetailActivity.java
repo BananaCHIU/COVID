@@ -51,6 +51,8 @@ public class StoreDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(StoreDetailActivity.this, AddSupplyActivity.class);
                 intent.putExtra("storeID", store.getStoreID());
+                //TODO: IDK Why the supplies in the store is null
+                intent.putExtra("supplies", supply);
                 startActivity(intent);
             }
         });
