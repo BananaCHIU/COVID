@@ -74,6 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12">
 
         <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:chipSpacing="8dp"
