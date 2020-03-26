@@ -1,9 +1,13 @@
 package com.example.covid.ui.supplies;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,14 +36,27 @@ public class StoreDetailRecyclerViewAdapter extends RecyclerView.Adapter<Recycle
     private Map<String, ArrayList> supplies;
     private ArrayList<String> supplyTypes = new ArrayList<>();
 
-    public StoreDetailRecyclerViewAdapter(Map<String, ArrayList> supplies)
+    public StoreDetailRecyclerViewAdapter(Map<String, ArrayList> supplies, Context context)
     {
         this.supplies = supplies;
-        supplyTypes.addAll(supplies.keySet());
+
+        for(String type : supplies.keySet())
+        {
+            if (supplies.get(type).isEmpty()) continue;
+            supplyTypes.add(type);
+        }
+
+        if(supplyTypes.isEmpty())
+        {
+            StoreDetailActivity activity = (StoreDetailActivity) context;
+            TextView title = (TextView) activity.findViewById(R.id.storedetail_TitleAS);
+            title.setText("No supply available now");
+            title.setTextColor(Color.RED);
+        }
     }
 
     @Override
-    public int getItemCount() {return supplies.size();}
+    public int getItemCount() {return supplyTypes.size();}
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType)
@@ -52,7 +69,28 @@ public class StoreDetailRecyclerViewAdapter extends RecyclerView.Adapter<Recycle
     public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int i)
     {
         final StoreDetailViewHolder storeDetailViewHolder = (StoreDetailViewHolder) viewHolder;
-        storeDetailViewHolder.typeName.setText(supplyTypes.get(i));
+
+        switch(supplyTypes.get(i))
+        {
+            case "SURGICAL_MASK":
+                storeDetailViewHolder.typeName.setText("Surgical Mask");
+                break;
+            case "HAND_SANITIZER":
+                storeDetailViewHolder.typeName.setText("Hand Sanitizer");
+                break;
+            case "BLEACH":
+                storeDetailViewHolder.typeName.setText("Bleach");
+                break;
+            case "RUBBING_ALCOHOL":
+                storeDetailViewHolder.typeName.setText("Rubbing Alcohol");
+                break;
+            case "RESPIRATOR":
+                storeDetailViewHolder.typeName.setText("Respirator");
+                break;
+            case "ISOLATION_CLOTHING":
+                storeDetailViewHolder.typeName.setText("Isolation Clothing");
+                break;
+        }
 
         storeDetailViewHolder.supplydetail.setLayoutManager(new LinearLayoutManager(storeDetailViewHolder.supplydetail.getContext()));
         storeDetailViewHolder.supplydetail.setAdapter(new SupplyDetailRecyclerViewAdapter(supplies.get(supplyTypes.get(i))));

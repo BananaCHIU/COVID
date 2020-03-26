@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.WaitEmailActivity" />
-        <activity android:name=".ui.AddStoreActivity" />
+        <activity android:name=".ui.supplies.AddStoreActivity" />
         <activity android:name=".ui.LoginActivity" />
 
         <meta-data

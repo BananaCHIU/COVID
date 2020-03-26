@@ -92,11 +92,10 @@ public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
                 .transform(new RoundedCornersTransformation(100,0)).into(storeViewHolder.storeImage);
         storeViewHolder.storeName.setText(stores.get(i).getStoreName());
 
-        ArrayList<String> sType = new ArrayList<>();
-        sType.addAll(stores.get(i).getSupplies().keySet());
 
-        for(String type : sType)
+        for(String type : stores.get(i).getSupplies().keySet())
         {
+            if(stores.get(i).getSupplies().get(type).isEmpty()) continue;
             switch(type)
             {
                 case "SURGICAL_MASK":

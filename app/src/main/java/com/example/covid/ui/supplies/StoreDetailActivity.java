@@ -67,7 +67,7 @@ public class StoreDetailActivity extends AppCompatActivity {
         RecyclerView storeDetail = (RecyclerView) findViewById(R.id.storedetail_RV);
         storeDetail.setLayoutManager(new LinearLayoutManager(this));
         storeDetail.setNestedScrollingEnabled(false);
-        storeDetail.setAdapter(new StoreDetailRecyclerViewAdapter(supply));
+        storeDetail.setAdapter(new StoreDetailRecyclerViewAdapter(supply, this));
 
     }
 
