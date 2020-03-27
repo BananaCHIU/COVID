@@ -110,7 +110,7 @@ public class SuppliesFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String area = parentView.getItemAtPosition(position).toString();
-                if(area.contains("-")){
+                if(area.contains("- -")){
                     Snackbar.make(getActivity().findViewById(android.R.id.content),
                             "Please select a valid district.", Snackbar.LENGTH_LONG).show();
                 }else{
@@ -145,7 +145,7 @@ public class SuppliesFragment extends Fragment {
                         // This method performs the actual data-refresh operation.
                         // The method calls setRefreshing(false) when it's finished.
                         String area = spinner.getSelectedItem().toString();
-                        if (!area.contains("-")){
+                        if (!area.contains("- -")){
                             downloadDataWithAreaFilter(area);
                         }else {
                             Snackbar.make(getActivity().findViewById(android.R.id.content),
