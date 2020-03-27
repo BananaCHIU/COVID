@@ -60,7 +60,7 @@ public class StoreDetailActivity extends AppCompatActivity {
         Picasso.get().load(store.getImage())
                 .placeholder(R.drawable.placeholder)
                 .transform(new CropSquareTransformation())
-                .transform(new RoundedCornersTransformation(100,0)).into(image);
+                .transform(new RoundedCornersTransformation(200,0)).into(image);
 
         getSupportActionBar().setTitle(Html.fromHtml("<font color=\"black\">" + store.getStoreName() + "</font>"));
         businessHour.setText(store.getTimeOpen() + " - " + store.getTimeClose());

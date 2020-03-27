@@ -51,13 +51,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:alpha="0.8"
                 android:background="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
             <Spinner
                 android:id="@+id/spinner"
@@ -81,43 +81,70 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroup"
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:scrollbars="none"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip2"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_type_store"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Test" />
+                    app:chipSpacing="8dp"
+                    app:singleLine="true"
+                    app:singleSelection="true">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip3"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Test" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/mask"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/surgical_mask" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip4"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Test 1234566787" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/hand_san"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hand_sanitizer" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip5"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Test1231231231332121132" />
-            </com.google.android.material.chip.ChipGroup>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/bleach"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bleach" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/alcohol"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rubbing_alcohol" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/respirator"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/respirator" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/cloth"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/isolation_clothing" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </HorizontalScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

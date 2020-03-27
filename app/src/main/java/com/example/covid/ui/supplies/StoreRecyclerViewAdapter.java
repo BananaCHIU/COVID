@@ -89,7 +89,7 @@ public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
         Picasso.get().load(stores.get(i).getImage())
                 .placeholder(R.drawable.placeholder)
                 .transform(new CropSquareTransformation())
-                .transform(new RoundedCornersTransformation(100,0)).into(storeViewHolder.storeImage);
+                .transform(new RoundedCornersTransformation(200,0)).into(storeViewHolder.storeImage);
         storeViewHolder.storeName.setText(stores.get(i).getStoreName());
 
 
