@@ -20,7 +20,9 @@ import com.example.covid.data.Store;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -106,7 +108,6 @@ public class SuppliesFragment extends Fragment {
 
                         // This method performs the actual data-refresh operation.
                         // The method calls setRefreshing(false) when it's finished.
-                        mySwipeRefreshLayout.setRefreshing(true);
                         downloadStoreData();
 
                     }
@@ -118,9 +119,13 @@ public class SuppliesFragment extends Fragment {
     }
 
     private void downloadStoreData(){
+        mySwipeRefreshLayout.setRefreshing(true);
+
         ArrayList<Store> stores = new ArrayList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         db.collection("stores")
+                .whereEqualTo("approved", true)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -151,5 +156,12 @@ public class SuppliesFragment extends Fragment {
                         }
                     }
                 });
+    }
+
+    @Override
+    public void onResume() {
+        downloadStoreData();
+        super.onResume();
+
     }
 }

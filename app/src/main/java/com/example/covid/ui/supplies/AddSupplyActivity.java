@@ -153,6 +153,7 @@ public class AddSupplyActivity extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully updated!");
                         progress_add_supplies.setVisibility(View.GONE);
+                        setResult(2);
                         finish();
                     }
                 })

@@ -53,7 +53,7 @@ public class StoreDetailActivity extends AppCompatActivity {
                 intent.putExtra("storeID", store.getStoreID());
                 //TODO: IDK Why the supplies in the store is null
                 intent.putExtra("supplies", supply);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -77,6 +77,14 @@ public class StoreDetailActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 2) {
+            finish();
+        }
     }
 
 }
