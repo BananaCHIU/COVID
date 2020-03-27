@@ -54,171 +54,174 @@ public class HomeFragment extends Fragment{
                 //textConfirm.setText(s);
             }
         });
-        new Thread(new Runnable() {
-            ArrayList<String> texts;
-            String confirm, death, discharged, date;
-            Date updateDate;
-            int dConfirm = 0, dDeath = 0, dDischarge = 0;
-            @Override
-            @AddTrace(name = "HomeDownloadDataTrace", enabled = true)
-            public void run() {
+        if(isOnline()) {
+            new Thread(new Runnable() {
+                ArrayList<String> texts;
+                String confirm, death, discharged, date;
+                Date updateDate;
+                int dConfirm = 0, dDeath = 0, dDischarge = 0;
 
-                try {
-                    texts = getVirusInfo();
-                    //Get update date
-                    int index = texts.get(0).lastIndexOf("updateDate");
-                    String updatedText = texts.get(0).substring(index);
+                @Override
+                @AddTrace(name = "HomeDownloadDataTrace", enabled = true)
+                public void run() {
 
-                    StringBuilder sb = new StringBuilder(
-                            updatedText.length());
-                    boolean find = false;
-                    for(int i = 13; i < updatedText.length(); i++){
-                        char c = updatedText.charAt(i);
-                        if(c > 47 && c < 58 || c == '/'){
-                            find = true;
-                            sb.append(c);
-                        }else if (find) break;
-                    }
-                    date = sb.toString();
+                    try {
+                        texts = getVirusInfo();
+                        //Get update date
+                        int index = texts.get(0).lastIndexOf("updateDate");
+                        String updatedText = texts.get(0).substring(index);
 
-                    //Get update time
-                    index = texts.get(0).lastIndexOf("updateTime");
-                    updatedText = texts.get(0).substring(index);
-
-                    sb = new StringBuilder(
-                            updatedText.length());
-                    find = false;
-                    for(int i = 13; i < updatedText.length(); i++){
-                        char c = updatedText.charAt(i);
-                        if(c > 47 && c < 58 || c == ':'){
-                            find = true;
-                            sb.append(c);
-                        }else if (find) break;
-                    }
-                    date = date.concat(sb.toString());
-                    //Process to Date
-                    updateDate = new SimpleDateFormat("dd/MM/yyyyHH:mm").parse(date);
-
-                    //Get latest confirm number
-                    index = texts.get(0).lastIndexOf("comfirmCase");
-                    updatedText = texts.get(0).substring(index);
-
-                    sb = new StringBuilder(
-                            updatedText.length());
-                    find = false;
-                    for(int i = 13; i < updatedText.length(); i++){
-                        char c = updatedText.charAt(i);
-                        if(c > 47 && c < 58){
-                            find = true;
-                            sb.append(c);
-                        }else if (find) break;
-                    }
-                    confirm = sb.toString();
-
-                    //Get confirm number from last day
-                    int dIndex = index - 160;                           //Location of last day's data
-                    updatedText = texts.get(0).substring(dIndex);
-
-                    sb = new StringBuilder(
-                            updatedText.length());
-                    find = false;
-                    for(int i = 13; i < updatedText.length(); i++){
-                        char c = updatedText.charAt(i);
-                        if(c > 47 && c < 58){
-                            find = true;
-                            sb.append(c);
-                        }else if (find) break;
-                    }
-                    dConfirm = Integer.parseInt(confirm) - Integer.parseInt(sb.toString());
-
-                    //Get latest death number
-                    index = texts.get(0).lastIndexOf("death");
-                    updatedText = texts.get(0).substring(index);
-
-                    sb = new StringBuilder(
-                            updatedText.length());
-                    find = false;
-                    for(int i = 7; i < updatedText.length(); i++){
-                        char c = updatedText.charAt(i);
-                        if(c > 47 && c < 58){
-                            find = true;
-                            sb.append(c);
-                        }else if (find) break;
-                    }
-                    death = sb.toString();
-
-                    //Get death number from last day
-
-                    dIndex = index - 160;                           //Location of last day's data
-                    updatedText = texts.get(0).substring(dIndex);
-
-                    sb = new StringBuilder(
-                            updatedText.length());
-                    find = false;
-                    for(int i = 7; i < updatedText.length(); i++){
-                        char c = updatedText.charAt(i);
-                        if(c > 47 && c < 58){
-                            find = true;
-                            sb.append(c);
-                        }else if (find) break;
-                    }
-                    dDeath = Integer.parseInt(death) - Integer.parseInt(sb.toString());
-
-                    //Get latest discharge number
-                    index = texts.get(0).lastIndexOf("recover");
-                    updatedText = texts.get(0).substring(index);
-
-                    sb = new StringBuilder(
-                            updatedText.length());
-                    find = false;
-                    for(int i = 9; i < updatedText.length(); i++){
-                        char c = updatedText.charAt(i);
-                        if(c > 47 && c < 58){
-                            find = true;
-                            sb.append(c);
-                        }else if (find) break;
-                    }
-                    discharged = sb.toString();
-
-                    //Get discharge number from last day
-                    dIndex = index - 160;                           //Location of last day's data
-                    updatedText = texts.get(0).substring(dIndex);
-
-                    sb = new StringBuilder(
-                            updatedText.length());
-                    find = false;
-                    for(int i = 9; i < updatedText.length(); i++){
-                        char c = updatedText.charAt(i);
-                        if(c > 47 && c < 58){
-                            find = true;
-                            sb.append(c);
-                        }else if (find) break;
-                    }
-                    dDischarge = Integer.parseInt(discharged) - Integer.parseInt(sb.toString());
-
-
-                } catch (IOException | ParseException e) {
-                    e.printStackTrace();
-                }
-
-                if(getActivity() != null) {
-
-                    Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
-                        public void run() {
-                            textConfirm.setText(confirm);
-                            textDeath.setText(death);
-                            textDischarged.setText(discharged);
-                            textdConfirm.setText(Integer.toString(dConfirm));
-                            textdDeath.setText(Integer.toString(dDeath));
-                            textdDischarged.setText(Integer.toString(dDischarge));
-                            SimpleDateFormat format = new SimpleDateFormat(" dd MMM yyyy, E HH:mm");
-                            textUpdateDate.setText(getString(R.string.updateDate) + format.format(updateDate));
+                        StringBuilder sb = new StringBuilder(
+                                updatedText.length());
+                        boolean find = false;
+                        for (int i = 13; i < updatedText.length(); i++) {
+                            char c = updatedText.charAt(i);
+                            if (c > 47 && c < 58 || c == '/') {
+                                find = true;
+                                sb.append(c);
+                            } else if (find) break;
                         }
-                    });
-                }
-            }
+                        date = sb.toString();
 
-        }).start();
+                        //Get update time
+                        index = texts.get(0).lastIndexOf("updateTime");
+                        updatedText = texts.get(0).substring(index);
+
+                        sb = new StringBuilder(
+                                updatedText.length());
+                        find = false;
+                        for (int i = 13; i < updatedText.length(); i++) {
+                            char c = updatedText.charAt(i);
+                            if (c > 47 && c < 58 || c == ':') {
+                                find = true;
+                                sb.append(c);
+                            } else if (find) break;
+                        }
+                        date = date.concat(sb.toString());
+                        //Process to Date
+                        updateDate = new SimpleDateFormat("dd/MM/yyyyHH:mm").parse(date);
+
+                        //Get latest confirm number
+                        index = texts.get(0).lastIndexOf("comfirmCase");
+                        updatedText = texts.get(0).substring(index);
+
+                        sb = new StringBuilder(
+                                updatedText.length());
+                        find = false;
+                        for (int i = 13; i < updatedText.length(); i++) {
+                            char c = updatedText.charAt(i);
+                            if (c > 47 && c < 58) {
+                                find = true;
+                                sb.append(c);
+                            } else if (find) break;
+                        }
+                        confirm = sb.toString();
+
+                        //Get confirm number from last day
+                        int dIndex = index - 160;                           //Location of last day's data
+                        updatedText = texts.get(0).substring(dIndex);
+
+                        sb = new StringBuilder(
+                                updatedText.length());
+                        find = false;
+                        for (int i = 13; i < updatedText.length(); i++) {
+                            char c = updatedText.charAt(i);
+                            if (c > 47 && c < 58) {
+                                find = true;
+                                sb.append(c);
+                            } else if (find) break;
+                        }
+                        dConfirm = Integer.parseInt(confirm) - Integer.parseInt(sb.toString());
+
+                        //Get latest death number
+                        index = texts.get(0).lastIndexOf("death");
+                        updatedText = texts.get(0).substring(index);
+
+                        sb = new StringBuilder(
+                                updatedText.length());
+                        find = false;
+                        for (int i = 7; i < updatedText.length(); i++) {
+                            char c = updatedText.charAt(i);
+                            if (c > 47 && c < 58) {
+                                find = true;
+                                sb.append(c);
+                            } else if (find) break;
+                        }
+                        death = sb.toString();
+
+                        //Get death number from last day
+
+                        dIndex = index - 160;                           //Location of last day's data
+                        updatedText = texts.get(0).substring(dIndex);
+
+                        sb = new StringBuilder(
+                                updatedText.length());
+                        find = false;
+                        for (int i = 7; i < updatedText.length(); i++) {
+                            char c = updatedText.charAt(i);
+                            if (c > 47 && c < 58) {
+                                find = true;
+                                sb.append(c);
+                            } else if (find) break;
+                        }
+                        dDeath = Integer.parseInt(death) - Integer.parseInt(sb.toString());
+
+                        //Get latest discharge number
+                        index = texts.get(0).lastIndexOf("recover");
+                        updatedText = texts.get(0).substring(index);
+
+                        sb = new StringBuilder(
+                                updatedText.length());
+                        find = false;
+                        for (int i = 9; i < updatedText.length(); i++) {
+                            char c = updatedText.charAt(i);
+                            if (c > 47 && c < 58) {
+                                find = true;
+                                sb.append(c);
+                            } else if (find) break;
+                        }
+                        discharged = sb.toString();
+
+                        //Get discharge number from last day
+                        dIndex = index - 160;                           //Location of last day's data
+                        updatedText = texts.get(0).substring(dIndex);
+
+                        sb = new StringBuilder(
+                                updatedText.length());
+                        find = false;
+                        for (int i = 9; i < updatedText.length(); i++) {
+                            char c = updatedText.charAt(i);
+                            if (c > 47 && c < 58) {
+                                find = true;
+                                sb.append(c);
+                            } else if (find) break;
+                        }
+                        dDischarge = Integer.parseInt(discharged) - Integer.parseInt(sb.toString());
+
+
+                    } catch (IOException | ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (getActivity() != null) {
+
+                        Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
+                            public void run() {
+                                textConfirm.setText(confirm);
+                                textDeath.setText(death);
+                                textDischarged.setText(discharged);
+                                textdConfirm.setText(Integer.toString(dConfirm));
+                                textdDeath.setText(Integer.toString(dDeath));
+                                textdDischarged.setText(Integer.toString(dDischarge));
+                                SimpleDateFormat format = new SimpleDateFormat(" dd MMM yyyy, E HH:mm");
+                                textUpdateDate.setText(getString(R.string.updateDate) + format.format(updateDate));
+                            }
+                        });
+                    }
+                }
+
+            }).start();
+        }
         return root;
     }
 
@@ -238,5 +241,18 @@ public class HomeFragment extends Fragment{
         }
         in.close();
         return urls;
+    }
+
+    // ICMP
+    public boolean isOnline() {
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+            int     exitValue = ipProcess.waitFor();
+            return (exitValue == 0);
+        }
+        catch (IOException | InterruptedException e)          { e.printStackTrace(); }
+
+        return false;
     }
 }
