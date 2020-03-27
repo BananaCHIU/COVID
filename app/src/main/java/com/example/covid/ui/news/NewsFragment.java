@@ -17,6 +17,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.covid.R;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.perf.metrics.AddTrace;
 import com.prof.rssparser.Channel;
 
 
@@ -35,6 +36,7 @@ public class NewsFragment extends Fragment {
     }
 
     @Override
+    @AddTrace(name = "NewsOnCreateTrace", enabled = true)
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_news, container, false);

@@ -34,6 +34,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.perf.metrics.AddTrace;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -176,6 +177,7 @@ public class AddStoreActivity extends AppCompatActivity {
         return valid;
     }
 
+    @AddTrace(name = "UploadStoreTrace", enabled = true)
     private void uploadStore(){
         // Add a new document with a generated id.
         Map<String, Object> data = new HashMap<>();

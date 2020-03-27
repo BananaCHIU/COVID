@@ -24,6 +24,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.perf.metrics.AddTrace;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -114,6 +115,7 @@ public class AddSupplyActivity extends AppCompatActivity {
         return valid;
     }
 
+    @AddTrace(name = "UploadSuppliesTrace", enabled = true)
     private void uploadData(){
         Supply.suppliesType supplyType = null;
         switch (chip_type.getCheckedChipId()){

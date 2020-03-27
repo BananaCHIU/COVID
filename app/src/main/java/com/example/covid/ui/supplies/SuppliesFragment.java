@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.perf.metrics.AddTrace;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -118,6 +119,7 @@ public class SuppliesFragment extends Fragment {
         return view;
     }
 
+    @AddTrace(name = "DownloadStoreDataTrace", enabled = true)
     private void downloadStoreData(){
         mySwipeRefreshLayout.setRefreshing(true);
 

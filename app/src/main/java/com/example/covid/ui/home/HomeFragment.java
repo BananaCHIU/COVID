@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import com.example.covid.R;
+import com.google.firebase.perf.metrics.AddTrace;
 
 public class HomeFragment extends Fragment{
 
@@ -53,13 +54,13 @@ public class HomeFragment extends Fragment{
                 //textConfirm.setText(s);
             }
         });
-
         new Thread(new Runnable() {
             ArrayList<String> texts;
             String confirm, death, discharged, date;
             Date updateDate;
             int dConfirm = 0, dDeath = 0, dDischarge = 0;
             @Override
+            @AddTrace(name = "HomeDownloadDataTrace", enabled = true)
             public void run() {
 
                 try {
@@ -199,18 +200,22 @@ public class HomeFragment extends Fragment{
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
-                Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable(){
-                    public void run(){
-                        textConfirm.setText(confirm);
-                        textDeath.setText(death);
-                        textDischarged.setText(discharged);
-                        textdConfirm.setText(Integer.toString(dConfirm));
-                        textdDeath.setText(Integer.toString(dDeath));
-                        textdDischarged.setText(Integer.toString(dDischarge));
-                        SimpleDateFormat format = new SimpleDateFormat(" dd MMM yyyy, E HH:mm");
-                        textUpdateDate.setText(getString(R.string.updateDate) + format.format(updateDate));
-                    }
-                });
+
+                if(getActivity() != null) {
+
+                    Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
+                        public void run() {
+                            textConfirm.setText(confirm);
+                            textDeath.setText(death);
+                            textDischarged.setText(discharged);
+                            textdConfirm.setText(Integer.toString(dConfirm));
+                            textdDeath.setText(Integer.toString(dDeath));
+                            textdDischarged.setText(Integer.toString(dDischarge));
+                            SimpleDateFormat format = new SimpleDateFormat(" dd MMM yyyy, E HH:mm");
+                            textUpdateDate.setText(getString(R.string.updateDate) + format.format(updateDate));
+                        }
+                    });
+                }
             }
 
         }).start();

@@ -13,6 +13,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.perf.metrics.AddTrace;
 
 import android.content.Context;
 import android.content.Intent;
@@ -129,6 +130,7 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
     }
 
+    @AddTrace(name = "LoginTrace", enabled = true)
     private void login(String email, String password){
 
         if (!validateForm(false)) {
@@ -156,6 +158,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    @AddTrace(name = "RegisterTrace", enabled = true)
     private void register(String email, String password) {
         if (!validateForm(true)) {
             return;
