@@ -63,4 +63,6 @@
     <string name="product_name">Product Name</string>
     <string name="price">Price</string>
     <string name="optional">* Optional</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
 </resources>

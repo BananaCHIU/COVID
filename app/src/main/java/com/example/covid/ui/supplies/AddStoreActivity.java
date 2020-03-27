@@ -31,6 +31,7 @@ import com.example.covid.data.Supply.suppliesType;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -41,6 +42,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -53,11 +55,12 @@ import java.util.Map;
 
 import static android.graphics.Color.*;
 
-public class AddStoreActivity extends AppCompatActivity {
+public class AddStoreActivity extends AppCompatActivity implements ActionBottomDialogFragment.ItemClickListener{
 
     //public enum suppliesType {SURGICAL_MASK, HAND_SANITIZER, BLEACH, RUBBING_ALCOHOL, RESPIRATOR, ISOLATION_CLOTHING}
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final String TAG = "AddStoreActivity";
+    private static final int REQUEST_IMAGE_FROM_STORAGE = 2;
 
     private ProgressBar progress_add;
     private Button btn_add;
@@ -99,12 +102,7 @@ public class AddStoreActivity extends AppCompatActivity {
             }
         });
 
-        btn_camera.setOnClickListener(v -> {
-            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-            }
-        });
+        btn_camera.setOnClickListener(this::showBottomSheet);
 
         btn_close.setOnClickListener(v -> {
             finish();
@@ -258,9 +256,21 @@ public class AddStoreActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            storeMap = (Bitmap) extras.get("data");
+
+        //Get image from camera
+        if (resultCode == RESULT_OK && data != null) {
+            if (requestCode == REQUEST_IMAGE_CAPTURE) {
+                Bundle extras = data.getExtras();
+                storeMap = (Bitmap) extras.get("data");
+            }else if (requestCode == REQUEST_IMAGE_FROM_STORAGE){
+                Uri chosenImageUri = data.getData();
+
+                try {
+                    storeMap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), chosenImageUri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
 
             Matrix matrix = new Matrix();
             matrix.postRotate(90);
@@ -268,6 +278,32 @@ public class AddStoreActivity extends AppCompatActivity {
             storeMap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
             img_tick.setVisibility(View.VISIBLE);
             scaledBitmap.recycle();
+        }
+        if (requestCode == REQUEST_IMAGE_FROM_STORAGE && resultCode == RESULT_OK && data != null)
+        {
+
+        }
+
+    }
+
+    public void showBottomSheet(View view) {
+        ActionBottomDialogFragment addPhotoBottomDialogFragment =
+                ActionBottomDialogFragment.newInstance();
+        addPhotoBottomDialogFragment.show(getSupportFragmentManager(),
+                ActionBottomDialogFragment.TAG);
+    }
+
+    @Override
+    public void onItemClick(String item) {
+        if (item.equals(getResources().getString(R.string.camera))){
+            Intent takePictureIntent = new Intent("android.media.action.IMAGE_CAPTURE");
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
+        }else if(item.equals(getResources().getString(R.string.gallery))){
+            Intent photoPickerIntent = new Intent(Intent.ACTION_GET_CONTENT);
+            photoPickerIntent.setType("image/*");
+            startActivityForResult(photoPickerIntent, REQUEST_IMAGE_FROM_STORAGE);
         }
     }
 }
