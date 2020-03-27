@@ -128,7 +128,7 @@ public class AddStoreActivity extends AppCompatActivity implements ActionBottomD
             input_storeName.setError(null);
         }
         String district = spinner_district.getSelectedItem().toString();
-        if (district.equals("-- Please Select --")) {
+        if (district.contains("-")) {
             TextView errorText = (TextView)spinner_district.getSelectedView();
             errorText.setError("Error");
             errorText.setTextColor(parseColor("#FFDD2C00"));
