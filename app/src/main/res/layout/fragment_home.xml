@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/design_default_color_surface"
     tools:context=".ui.home.HomeFragment">
 
     <TextView
@@ -55,7 +54,7 @@
         android:fontFamily="@font/open_sans"
         android:text="xxx"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline3"
         android:textColor="@android:color/holo_red_light"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,12 +75,12 @@
 
     <TextView
         android:id="@+id/text_death"
-        android:layout_width="40dp"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="xxx"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline4"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/title_death"
         app:layout_constraintStart_toStartOf="@+id/title_death"
@@ -101,12 +100,12 @@
 
     <TextView
         android:id="@+id/text_discharged"
-        android:layout_width="40dp"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="xxx"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline4"
         android:textColor="@android:color/holo_green_light"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/title_discharged"
@@ -117,12 +116,11 @@
         android:id="@+id/text_source"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginBottom="32dp"
         android:text="@string/home_source"
         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Caption"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -131,7 +129,7 @@
         android:layout_height="wrap_content"
         android:text="x"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
         android:textColor="@android:color/holo_red_dark"
         app:layout_constraintEnd_toEndOf="@+id/text_confirm"
         app:layout_constraintStart_toEndOf="@+id/text_upconfirm"
@@ -142,7 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/up"
-        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
         android:textColor="@android:color/holo_red_dark"
         app:layout_constraintStart_toStartOf="@+id/text_confirm"
         app:layout_constraintTop_toBottomOf="@+id/text_confirm" />
@@ -190,5 +188,16 @@
         android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="@+id/text_death"
         app:layout_constraintTop_toBottomOf="@+id/text_death" />
+
+    <TextView
+        android:id="@+id/text_updateDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/updateDate"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Caption"
+        app:layout_constraintBottom_toTopOf="@+id/text_source"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

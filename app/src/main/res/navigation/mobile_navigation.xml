@@ -9,35 +9,23 @@
         android:id="@+id/nav_home"
         android:name="com.example.covid.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home">
-
-        <action
-            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
-            app:destination="@id/nav_home_second" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_home_second"
-        android:name="com.example.covid.ui.home.HomeSecondFragment"
-        android:label="@string/home_second"
-        tools:layout="@layout/fragment_home_second">
-        <action
-            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
-            app:destination="@id/nav_home" />
-
-        <argument
-            android:name="myArg"
-            app:argType="string" />
-    </fragment>
+        tools:layout="@layout/fragment_home"/>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.covid.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_supplies"
+        android:name="com.example.covid.ui.supplies.SuppliesFragment"
+        android:label="@string/menu_supplies"
+        tools:layout="@layout/fragment_supplies"/>
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.covid.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_news"
+        android:name="com.example.covid.ui.news.NewsFragment"
+        android:label="@string/menu_news"
+        tools:layout="@layout/fragment_news" />
+
+    <fragment
+        android:id="@+id/nav_map"
+        android:name="com.example.covid.ui.map.MapFragment"
+        android:label="@string/menu_map"
+        tools:layout="@layout/fragment_map" />
 </navigation>

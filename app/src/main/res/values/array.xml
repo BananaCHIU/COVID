@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="district">
+        <item>- - - - - - - - - - - - Please Select - - - - - - - - - - - -</item>
+        <item>- - - - - - - - - - - - Central and Western - - - - - - - - - - - -</item>
+        <item>Central District</item>
+        <item>Mid-Levels</item>
+        <item>Sai Wan</item>
+        <item>Sheung Wan</item>
+        <item>- - - - - - - - - - - - Eastern - - - - - - - - - - - -</item>
+        <item>Chai Wan</item>
+        <item>North Point</item>
+        <item>Quarry Bay</item>
+        <item>Sai Wan Ho</item>
+        <item>Shau Kei Wan</item>
+        <item>- - - - - - - - - - Islands - - - - - - - - - -</item>
+        <item>Chek Lap Kok</item>
+        <item>Cheung Chau</item>
+        <item>Lamma Island</item>
+        <item>Lantau Island</item>
+        <item>Peng Chau</item>
+        <item>- - - - - - - - - - Kowloon City - - - - - - - - - -</item>
+        <item>Ho Man Tin</item>
+        <item>Hung Hom</item>
+        <item>Kowloon City</item>
+        <item>Kowloon Tong</item>
+        <item>Kowloon Tsai</item>
+        <item>Ma Tau Kok</item>
+        <item>Ma Tau Wai</item>
+        <item>To Kwa Wan</item>
+        <item>- - - - - - - - - - Kwai Tsing - - - - - - - - - - </item>
+        <item>Kwai Chung</item>
+        <item>Tsing Yi</item>
+        <item>- - - - - - - - - - Kwun Tong - - - - - - - - - -</item>
+        <item>Cha Kwo Ling</item>
+        <item>Kwun Tong</item>
+        <item>Lam Tin</item>
+        <item>Ngau Tau Kok</item>
+        <item>Ngau Chi Wan</item>
+        <item>Shun Lee</item>
+        <item>Kowloon Bay</item>
+        <item>Sau Mau Ping</item>
+        <item>Yau Tong</item>
+        <item>- - - - - - - - - - North - - - - - - - - - -</item>
+        <item>Closed Area</item>
+        <item>Fanling</item>
+        <item>Kwan Tei</item>
+        <item>Kwu Tung</item>
+        <item>Lin Ma Hang</item>
+        <item>Lo Wu</item>
+        <item>Man Kam To</item>
+        <item>- - - - - - - - - - Sai Kung - - - - - - - - - -</item>
+        <item>Clear Water bay</item>
+        <item>Kau Sai Chau</item>
+        <item>Kiu Tsui Chau</item>
+        <item>Pak Sha Chau</item>
+        <item>Sai Kung Town</item>
+        <item>Ho Chung</item>
+        <item>Leung Shuen Wan</item>
+        <item>Marina Cove</item>
+        <item>Tui Min Hoi</item>
+        <item>Yim Tin Tsai</item>
+        <item>Tsuung Kwan O New Town</item>
+        <item>Tseung Kwan O Industrial Estate</item>
+        <item>Tung Lung Chau</item>
+        <item>Yeung Chau</item>
+        <item>- - - - - - - - - - Sha Tin - - - - - - - - - -</item>
+        <item>Fo Tan</item>
+        <item>Kau To Shan</item>
+        <item>Cheung Sha Wan Rural</item>
+        <item>Ma Liu Shui</item>
+        <item>Ma On Shan</item>
+        <item>Pak Shek Kok</item>
+        <item>Sha Tin</item>
+        <item>- - - - - - - - - - Sham Shui Po - - - - - - - - - -</item>
+        <item>Cheung Sha Wan</item>
+        <item>Lai Chi Kok</item>
+        <item>Sham Shui Po</item>
+        <item>Shek Kip Mei</item>
+        <item>Yau Yat Chuen</item>
+        <item>- - - - - - - - - - Southern - - - - - - - - - -</item>
+        <item>Aberdeen</item>
+        <item>Ap Lei Chau</item>
+        <item>Chung Hom Kok</item>
+        <item>Cyberport</item>
+        <item>Deep Water Bay</item>
+        <item>Pok Fu Lam</item>
+        <item>Shan Ting</item>
+        <item>Tin Wan</item>
+        <item>Wong Chuk Hang</item>
+        <item>- - - - - - - - - - Tai Po - - - - - - - - - -</item>
+        <item>Hoi Ha Wan</item>
+        <item>Hong Lok Yuen</item>
+        <item>Kei Ling Ha Lo Wai</item>
+        <item>Lam Tsuen</item>
+        <item>Nai chung</item>
+        <item>Pak Shek Kok</item>
+        <item>Pat Sin Leng</item>
+        <item>Ping Chau</item>
+        <item>Plover Cove</item>
+        <item>Science Park</item>
+        <item>Pak Shek Kok</item>
+        <item>Shap Sze Heung</item>
+        <item>Tai Po Kau</item>
+        <item>Ting Kok</item>
+        <item>- - - - - - - - - - Tsuen Wan - - - - - - - - - -</item>
+        <item>Lo Wai</item>
+        <item>Ma Wan</item>
+        <item>Sham Tseng</item>
+        <item>Ting Kau</item>
+        <item>Tsuen Wan</item>
+        <item>- - - - - - - - - - Tuen Mun - - - - - - - - - -</item>
+        <item>Tuen Mun New Town</item>
+        <item>Tai Lam Chung</item>
+        <item>- - - - - - - - - - Wan Chai - - - - - - - - - -</item>
+        <item>Causeway Bay</item>
+        <item>Happy Valley</item>
+        <item>Tai Hang</item>
+        <item>Wan Chai</item>
+        <item>- - - - - - - - - - Wong Tai Sin - - - - - - - - - -</item>
+        <item>Diamond Hill</item>
+        <item>Kowloon Peak</item>
+        <item>Choi Hung</item>
+        <item>San Po Kong</item>
+        <item>Tsz Wan Shan</item>
+        <item>Wang Tau Hom</item>
+        <item>Wong Tai Sin</item>
+        <item>- - - - - - - - - - Yau Tsim Mong - - - - - - - - - -</item>
+        <item>Hung Hom</item>
+        <item>Mong Kok</item>
+        <item>Tai Kok Tsui</item>
+        <item>Tsim Sha Tsui</item>
+        <item>Tsim Sha Tsui East</item>
+        <item>Yau Ma Tei</item>
+        <item>- - - - - - - - - - Yuen Long - - - - - - - - - -</item>
+        <item>Kam Tin</item>
+        <item>San Tin</item>
+        <item>Lok Ma Chau</item>
+        <item>Mai Po</item>
+        <item>Tin Shui Wan</item>
+    </string-array>
+</resources>
