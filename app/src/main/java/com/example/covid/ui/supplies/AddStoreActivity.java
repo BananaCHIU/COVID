@@ -204,18 +204,15 @@ public class AddStoreActivity extends AppCompatActivity implements ActionBottomD
                 .add(data)
                 .addOnSuccessListener(documentReference ->
                 {
-                    Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
                     documentReference.update("id", documentReference.getId())
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Log.d(TAG, "DocumentSnapshot successfully updated!");
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error updating document", e);
                             }
                         });
 
@@ -237,20 +234,28 @@ public class AddStoreActivity extends AppCompatActivity implements ActionBottomD
                             // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
                             // ...
                             Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
-                            result.addOnSuccessListener(uri -> documentReference.update("imageURL", uri.toString())
-                                    .addOnSuccessListener(aVoid -> {
-                                        Log.d(TAG, "DocumentSnapshot successfully updated!");
-                                        progress_add.setVisibility(View.INVISIBLE);
-                                        finish();
-                                    })
-                                    .addOnFailureListener(e -> Log.w(TAG, "Error updating document", e)));
+                            result.addOnSuccessListener(uri -> {
+                                documentReference.update("imageURL", uri.toString())
+                                        .addOnSuccessListener(aVoid -> {
+                                            progress_add.setVisibility(View.INVISIBLE);
+                                            finish();
+                                        })
+                                        .addOnFailureListener(e -> {
+
+                                        });
+                            });
                         });
                     }else {
                         progress_add.setVisibility(View.INVISIBLE);
                         finish();
                     }
                 })
-                .addOnFailureListener(e -> Log.w(TAG, "Error adding document", e));
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
     }
 
     @Override

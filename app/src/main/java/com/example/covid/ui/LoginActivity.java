@@ -142,11 +142,9 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithEmail:success");
                             //FirebaseUser user = mAuth.getCurrentUser();
                             finish();
                         } else {
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Snackbar.make(v, "Login failed. Please try again or register an new account", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
 
@@ -169,7 +167,6 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "createUserWithEmail:success");
                             user = mAuth.getCurrentUser();
                             user.reload();
                             if (!user.isEmailVerified()) {
@@ -178,7 +175,6 @@ public class LoginActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-                                                    Log.d(TAG, "Email sent.");
                                                     Snackbar.make(v, "Email verification need. Please check your email.", Snackbar.LENGTH_LONG)
                                                             .setAction("Action", null).show();
 
@@ -191,7 +187,6 @@ public class LoginActivity extends AppCompatActivity {
                                                                 @Override
                                                                 public void onComplete(@NonNull Task<Void> task) {
                                                                     if (task.isSuccessful()) {
-                                                                        Log.d(TAG, "User profile updated.");
                                                                     }
                                                                 }
                                                             });
@@ -206,7 +201,6 @@ public class LoginActivity extends AppCompatActivity {
                                         });
                             }
                         } else {
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Snackbar.make(v, "Registration failed.", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
                             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);

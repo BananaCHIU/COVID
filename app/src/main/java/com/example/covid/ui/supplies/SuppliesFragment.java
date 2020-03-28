@@ -149,8 +149,6 @@ public class SuppliesFragment extends Fragment {
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
-                        Log.i(TAG, "onRefresh called from SwipeRefreshLayout");
-
                         // This method performs the actual data-refresh operation.
                         // The method calls setRefreshing(false) when it's finished.
                         String area = spinner.getSelectedItem().toString();
@@ -183,7 +181,6 @@ public class SuppliesFragment extends Fragment {
                         if (task.isSuccessful()) {
                             stores = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId());
                                 Store store = new Store();
                                 store.setImageURL(document.getString("imageURL"));
                                 store.setAddress(document.getString("address"));
@@ -197,7 +194,6 @@ public class SuppliesFragment extends Fragment {
                             }
                             filterStoreWithSupply(stores);
                         } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
@@ -217,7 +213,6 @@ public class SuppliesFragment extends Fragment {
                         if (task.isSuccessful()) {
                             stores = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId());
                                 Store store = new Store();
                                 store.setImageURL(document.getString("imageURL"));
                                 store.setAddress(document.getString("address"));
@@ -231,7 +226,6 @@ public class SuppliesFragment extends Fragment {
                             }
                             filterStoreWithSupply(stores);
                         } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
@@ -251,7 +245,6 @@ public class SuppliesFragment extends Fragment {
                         if (task.isSuccessful()) {
                             stores = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId());
                                 Store store = new Store();
                                 store.setImageURL(document.getString("imageURL"));
                                 store.setAddress(document.getString("address"));
@@ -265,7 +258,7 @@ public class SuppliesFragment extends Fragment {
                             }
                             filterStoreWithSupply(stores);
                         } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
+
                         }
                     }
                 });

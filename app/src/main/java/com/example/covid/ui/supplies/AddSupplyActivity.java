@@ -153,7 +153,6 @@ public class AddSupplyActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully updated!");
                         progress_add_supplies.setVisibility(View.GONE);
                         setResult(2);
                         finish();
@@ -162,7 +161,6 @@ public class AddSupplyActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error updating document", e);
                         Toast.makeText(AddSupplyActivity.this, "Upload Failed.", Toast.LENGTH_LONG);
                     }
                 });
