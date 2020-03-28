@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,6 +24,8 @@ import com.example.covid.data.Store;
 import com.example.covid.data.Supply;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
@@ -35,7 +38,9 @@ import com.google.firebase.firestore.Source;
 import com.google.firebase.perf.metrics.AddTrace;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 import static com.google.firebase.crashlytics.internal.Logger.TAG;
 
@@ -53,6 +58,7 @@ public class SuppliesFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final int NUM_SUPPLY = 6;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -62,6 +68,9 @@ public class SuppliesFragment extends Fragment {
     private View view;
     private Spinner spinner;
     private ArrayList<Store> stores;
+    private Map<String, Boolean> filterSupply;
+    private Chip[] chips;
+    private ChipGroup chipGroup;
 
     public SuppliesFragment() {
         // Required empty public constructor
@@ -98,6 +107,10 @@ public class SuppliesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         view = inflater.inflate(R.layout.fragment_supplies, container, false);
+
+        initFilterSupply();
+
+
         recyclerView = (RecyclerView) view.findViewById(R.id.store_RecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
@@ -186,12 +199,7 @@ public class SuppliesFragment extends Fragment {
                                 store.setTimeClose(document.getString("timeClose"));
                                 stores.add(store);
                             }
-                            recyclerView.setAdapter(new StoreRecyclerViewAdapter(stores));
-                            if (stores.size() == 0){
-                                Toast.makeText(getActivity(), "No store",
-                                        Toast.LENGTH_LONG).show();
-                            }
-                            mySwipeRefreshLayout.setRefreshing(false);
+                            filterStoreWithSupply(stores);
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
@@ -225,12 +233,7 @@ public class SuppliesFragment extends Fragment {
                                 store.setTimeClose(document.getString("timeClose"));
                                 stores.add(store);
                             }
-                            recyclerView.setAdapter(new StoreRecyclerViewAdapter(stores));
-                            if (stores.size() == 0){
-                                Toast.makeText(getActivity(), "No store",
-                                        Toast.LENGTH_LONG).show();
-                            }
-                            mySwipeRefreshLayout.setRefreshing(false);
+                            filterStoreWithSupply(stores);
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
@@ -264,18 +267,72 @@ public class SuppliesFragment extends Fragment {
                                 store.setTimeClose(document.getString("timeClose"));
                                 stores.add(store);
                             }
-                            recyclerView.setAdapter(new StoreRecyclerViewAdapter(stores));
-                            if (stores.size() == 0){
-                                Toast.makeText(getActivity(), "No store",
-                                        Toast.LENGTH_LONG).show();
-                            }
-                            mySwipeRefreshLayout.setRefreshing(false);
+                            filterStoreWithSupply(stores);
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
     }
+
+    private void filterStoreWithSupply(ArrayList<Store> stores){
+
+        if (filterSupply.containsValue(true)) {
+            ArrayList<Store> filteredStores = new ArrayList<>();
+            filterSupply.forEach((s, aBoolean) -> {
+                if(aBoolean){
+                    for (int i = 0; i < stores.size(); ++i){
+                        if(!filteredStores.contains(stores.get(i)) && stores.get(i).getSupplies().get(s).size() != 0){
+                            filteredStores.add(stores.get(i));
+                        }
+                    }
+                }
+            });
+            recyclerView.setAdapter(new StoreRecyclerViewAdapter(filteredStores));
+            if (filteredStores.size() == 0){
+                Toast.makeText(getActivity(), "No store",
+                        Toast.LENGTH_LONG).show();
+            }
+        } else{
+            recyclerView.setAdapter(new StoreRecyclerViewAdapter(stores));
+            if (stores.size() == 0){
+                Toast.makeText(getActivity(), "No store",
+                        Toast.LENGTH_LONG).show();
+            }
+        }
+
+        mySwipeRefreshLayout.setRefreshing(false);
+    }
+
+    private void initFilterSupply(){
+        filterSupply = new HashMap<>();
+        filterSupply.put(Supply.suppliesType.SURGICAL_MASK.toString(), false);
+        filterSupply.put(Supply.suppliesType.HAND_SANITIZER.toString(), false);
+        filterSupply.put(Supply.suppliesType.BLEACH.toString(), false);
+        filterSupply.put(Supply.suppliesType.RUBBING_ALCOHOL.toString(), false);
+        filterSupply.put(Supply.suppliesType.RESPIRATOR.toString(), false);
+        filterSupply.put(Supply.suppliesType.ISOLATION_CLOTHING.toString(), false);
+
+        chips = new Chip[6];
+        chips[0] = view.findViewById(R.id.mask);
+        chips[1] = view.findViewById(R.id.hand_san);
+        chips[2] = view.findViewById(R.id.bleach);
+        chips[3] = view.findViewById(R.id.alcohol);
+        chips[4] = view.findViewById(R.id.respirator);
+        chips[5] = view.findViewById(R.id.cloth);
+        chipGroup = view.findViewById(R.id.chip_type_store);
+        for (int i = 0; i < NUM_SUPPLY; ++i){
+            chips[i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    filterSupply.replace(compoundButton.getTag().toString(), b);
+                    filterStoreWithSupply(stores);
+                }
+            });
+        }
+    }
+
+
 
     @Override
     public void onResume() {

@@ -97,14 +97,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:chipSpacing="8dp"
-                    app:singleLine="true"
-                    app:singleSelection="true">
+                    app:singleLine="true">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/mask"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:tag="SURGICAL_MASK"
                         android:text="@string/surgical_mask" />
 
                     <com.google.android.material.chip.Chip
@@ -112,6 +112,7 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:tag="HAND_SANITIZER"
                         android:text="@string/hand_sanitizer" />
 
                     <com.google.android.material.chip.Chip
@@ -119,6 +120,7 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:tag="BLEACH"
                         android:text="@string/bleach" />
 
                     <com.google.android.material.chip.Chip
@@ -126,6 +128,7 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:tag="RUBBING_ALCOHOL"
                         android:text="@string/rubbing_alcohol" />
 
                     <com.google.android.material.chip.Chip
@@ -133,6 +136,7 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:tag="RESPIRATOR"
                         android:text="@string/respirator" />
 
                     <com.google.android.material.chip.Chip
@@ -140,6 +144,7 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:tag="ISOLATION_CLOTHING"
                         android:text="@string/isolation_clothing" />
 
                 </com.google.android.material.chip.ChipGroup>
