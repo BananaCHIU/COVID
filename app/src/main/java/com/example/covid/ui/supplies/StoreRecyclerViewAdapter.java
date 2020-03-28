@@ -2,32 +2,21 @@ package com.example.covid.ui.supplies;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.covid.R;
 import com.example.covid.data.Store;
-import com.example.covid.data.Supply;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Map;
 
 import jp.wasabeef.picasso.transformations.CropSquareTransformation;
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
@@ -86,7 +75,7 @@ public class StoreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
     public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int i)
     {
         final StoreViewHolder storeViewHolder = (StoreViewHolder)viewHolder;
-        Picasso.get().load(stores.get(i).getImage())
+        Picasso.get().load(stores.get(i).getImageURL())
                 .placeholder(R.drawable.placeholder)
                 .transform(new CropSquareTransformation())
                 .transform(new RoundedCornersTransformation(200,0)).into(storeViewHolder.storeImage);

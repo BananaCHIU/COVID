@@ -4,17 +4,14 @@ import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.ArrayList;
 import java.util.Map;
 
 public class Store implements Parcelable
 {
     private String storeID;
-    private String image;
+    private String imageURL;
     private String name;
     private Map<String, ArrayList> supplies;
     private String district, address, timeOpen, timeClose;
@@ -23,10 +20,10 @@ public class Store implements Parcelable
 
     public Store() { }
 
-    public Store(String id, String image, String name, Map<String, ArrayList> supplies, String district, String address, String timeOpen, String timeClose, boolean approved)
+    public Store(String id, String imageURL, String name, Map<String, ArrayList> supplies, String district, String address, String timeOpen, String timeClose, boolean approved)
     {
         this.storeID = id;
-        this.image = image;
+        this.imageURL = imageURL;
         this.name = name;
         this.supplies = supplies;
         this.district = district;
@@ -38,7 +35,7 @@ public class Store implements Parcelable
 
     protected Store(Parcel in) {
         storeID = in.readString();
-        image = in.readString();
+        imageURL = in.readString();
         name = in.readString();
         district = in.readString();
         address = in.readString();
@@ -61,7 +58,7 @@ public class Store implements Parcelable
 
     public String getStoreID() { return storeID; }
 
-    public String getImage() { return image; }
+    public String getImageURL() { return imageURL; }
 
     public String getStoreName() { return name; }
 
@@ -79,7 +76,7 @@ public class Store implements Parcelable
 
     public void setStoreID(String id) { this.storeID = id; }
 
-    public void setImage(String image) { this.image = image; }
+    public void setImageURL(String imageURL) { this.imageURL = imageURL; }
 
     public void setStoreName(String name) { this.name = name; }
 
@@ -115,7 +112,7 @@ public class Store implements Parcelable
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(storeID);
-        parcel.writeString(image);
+        parcel.writeString(imageURL);
         parcel.writeString(name);
         parcel.writeString(district);
         parcel.writeString(address);

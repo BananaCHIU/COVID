@@ -27,11 +27,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Source;
@@ -40,7 +37,6 @@ import com.google.firebase.perf.metrics.AddTrace;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 import static com.google.firebase.crashlytics.internal.Logger.TAG;
 
@@ -189,7 +185,7 @@ public class SuppliesFragment extends Fragment {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId());
                                 Store store = new Store();
-                                store.setImage(document.getString("imageURL"));
+                                store.setImageURL(document.getString("imageURL"));
                                 store.setAddress(document.getString("address"));
                                 store.setDistrict(document.getString("district"));
                                 store.setStoreID(document.getString("id"));
@@ -223,7 +219,7 @@ public class SuppliesFragment extends Fragment {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId());
                                 Store store = new Store();
-                                store.setImage(document.getString("imageURL"));
+                                store.setImageURL(document.getString("imageURL"));
                                 store.setAddress(document.getString("address"));
                                 store.setDistrict(document.getString("district"));
                                 store.setStoreID(document.getString("id"));
@@ -257,7 +253,7 @@ public class SuppliesFragment extends Fragment {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId());
                                 Store store = new Store();
-                                store.setImage(document.getString("imageURL"));
+                                store.setImageURL(document.getString("imageURL"));
                                 store.setAddress(document.getString("address"));
                                 store.setDistrict(document.getString("district"));
                                 store.setStoreID(document.getString("id"));
@@ -290,14 +286,14 @@ public class SuppliesFragment extends Fragment {
             });
             recyclerView.setAdapter(new StoreRecyclerViewAdapter(filteredStores));
             if (filteredStores.size() == 0){
-                Toast.makeText(getActivity(), "No store",
-                        Toast.LENGTH_LONG).show();
+                Snackbar.make(view, "No store",
+                        Snackbar.LENGTH_LONG).show();
             }
         } else{
             recyclerView.setAdapter(new StoreRecyclerViewAdapter(stores));
             if (stores.size() == 0){
-                Toast.makeText(getActivity(), "No store",
-                        Toast.LENGTH_LONG).show();
+                Snackbar.make(view, "No store",
+                        Snackbar.LENGTH_LONG).show();
             }
         }
 
