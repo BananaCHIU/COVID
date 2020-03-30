@@ -61,7 +61,7 @@ public class StoreDetailActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle(Html.fromHtml("<font color=\"black\">" + store.getStoreName() + "</font>"));
         businessHour.setText(store.getTimeOpen() + " - " + store.getTimeClose());
-        address.setText(store.getAddress());
+        address.setText(store.getAddress() + ", " + store.getDistrict());
 
         RecyclerView storeDetail = (RecyclerView) findViewById(R.id.storedetail_RV);
         storeDetail.setLayoutManager(new LinearLayoutManager(this));
