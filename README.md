@@ -10,18 +10,18 @@ Lots of Hong Kong people went crazy in finding masks, hand sanitizers, and other
 4. Map of the locations where the confirmed case patients had traveled to.
 5. Users have to verify and log in using email to prevent spamming in our app
 
-## How I built it
+## How we built it
 Using Android Studio to make the app
 Firebase for the backend servers
 GitHub for version control
 
-## Challenges I ran into
+## Challenges we ran into
 The time is restricted, so we have to build the app in a hurry. Therefore, real user feedback and improvements can't be made. We also implemented new technologies that we never used, like the real-time database interaction between the mobile device and our server.
 
-## Accomplishments that I'm proud of
+## Accomplishments that we're proud of
 The app is finally working and prepared for real implementation. The most important function is the platform to report medical supplies. We hope that users can report meaningful data, and this is helpful for all of us.
 
-## What I learned
+## What we learned
 We learned to make an application that works in real-time. We have a server behind to process all the data provided by the user. Therefore, it so fruitful for us to learn all the skills of communication between the android phone and the server, and also the skills to process the meaningful data.
 
 ## What's next for COVID HK
