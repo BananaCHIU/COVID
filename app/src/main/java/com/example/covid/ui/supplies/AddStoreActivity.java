@@ -264,9 +264,11 @@ public class AddStoreActivity extends AppCompatActivity implements ActionBottomD
 
         //Get image from camera
         if (resultCode == RESULT_OK && data != null) {
+            Matrix matrix = new Matrix();
             if (requestCode == REQUEST_IMAGE_CAPTURE) {
                 Bundle extras = data.getExtras();
                 storeMap = (Bitmap) extras.get("data");
+                matrix.postRotate(90);
             }else if (requestCode == REQUEST_IMAGE_FROM_STORAGE){
                 Uri chosenImageUri = data.getData();
 
@@ -277,16 +279,10 @@ public class AddStoreActivity extends AppCompatActivity implements ActionBottomD
                 }
             }
 
-            Matrix matrix = new Matrix();
-            matrix.postRotate(90);
             Bitmap scaledBitmap = Bitmap.createScaledBitmap(storeMap, storeMap.getWidth() * 3, storeMap.getHeight() * 3, true);
             storeMap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
             img_tick.setVisibility(View.VISIBLE);
             scaledBitmap.recycle();
-        }
-        if (requestCode == REQUEST_IMAGE_FROM_STORAGE && resultCode == RESULT_OK && data != null)
-        {
-
         }
 
     }
