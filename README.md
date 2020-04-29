@@ -15,7 +15,9 @@ Lots of Hong Kong people went crazy in finding masks, hand sanitizers, and other
 
 ## How we built it
 Using Android Studio to make the app
+
 Firebase for the backend servers
+
 GitHub for version control
 
 ## Challenges we ran into
@@ -29,6 +31,9 @@ We learned to make an application that works in real-time. We have a server behi
 
 ## What's next for COVID HK
 Provide a function for the user to report false or outdated information.
+
 An online forum for discussion of the local COVID-19 virus situation
+
 Build a Chinese version
+
 Support more countries
