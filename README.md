@@ -1,5 +1,8 @@
 # COVID HK
 
+## Directions on how to run the code
+Clone this repository with master branch in Android Studio and simply run on the Android emulator or a physical phone using USB debugging bridge
+
 ## Inspiration
 Lots of Hong Kong people went crazy in finding masks, hand sanitizers, and other medical supplies. And they feel worried about the availability of different supplies. Therefore, we would like to build a platform for medical supplies availability. 
 
