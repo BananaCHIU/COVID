@@ -118,7 +118,7 @@ public class HomeFragment extends Fragment{
                         confirm = sb.toString();
 
                         //Get confirm number from last day
-                        int dIndex = index - 160;                           //Location of last day's data
+                        int dIndex = texts.get(0).indexOf("comfirmCase", index - 170);                           //Location of last day's data
                         updatedText = texts.get(0).substring(dIndex);
 
                         sb = new StringBuilder(
@@ -151,7 +151,7 @@ public class HomeFragment extends Fragment{
 
                         //Get death number from last day
 
-                        dIndex = index - 160;                           //Location of last day's data
+                        dIndex = texts.get(0).indexOf("death", index - 180);                           //Location of last day's data
                         updatedText = texts.get(0).substring(dIndex);
 
                         sb = new StringBuilder(
@@ -183,7 +183,7 @@ public class HomeFragment extends Fragment{
                         discharged = sb.toString();
 
                         //Get discharge number from last day
-                        dIndex = index - 160;                           //Location of last day's data
+                        dIndex = texts.get(0).indexOf("recover", index - 170);                           //Location of last day's data
                         updatedText = texts.get(0).substring(dIndex);
 
                         sb = new StringBuilder(
